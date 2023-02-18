@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Lobster&display=swap');
+*{
+  padding: 0px;
+  margin: 0px;
+}
+
+.main-container {
+    display: flex;
+    margin: 10px;
+    }
+  
+  .slideshower {
+    margin: 8px;
+    height: 95vh;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    font-family: "Lobster, cursive";
+    background-color: rgba(85, 53, 53, 0.7);
+}
+
+  .slideshower img {
+  width: 100%;
+  height: auto;
+  max-height: 95vh;
+  object-fit: fill;
+}
+    
+  .slides {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+   
+  }
+
+  .h1Tag {
+    opacity: 1;
+    background-color: rgba(5, 5, 5, 0.493);
+    position: relative;
+    aspect-ratio: calc(2.250/1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }

@@ -1,0 +1,36 @@
+.send-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden  ;
+}
+
+.send-text {
+  display: block;
+  transition: all 0.3s ease-in-out;
+  transform: translateY(50%);
+}
+
+.send-icon {
+  transition: all 0.3s ease-in-out;
+  transform: translateY(100%);
+}
+
+
+.send-text, .send-icon {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  }
+
+.send-button:hover .send-text {
+  transform: translateY(-100%);
+}
+
+.send-button:hover .send-icon {
+  /* display: block; */
+  transform: translateY(-25%);
+}
