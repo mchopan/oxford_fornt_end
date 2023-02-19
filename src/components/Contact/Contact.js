@@ -2,18 +2,16 @@
 import { Button, TextField, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import YouTubeIcon from '@mui/icons-material/YouTube';
 import SendIcon from '@mui/icons-material/Send';
 import './Contact.css'
+import { EmailSharp, LocationCity, PhoneAndroidOutlined } from '@mui/icons-material';
 
 const Contact = () => {
 
     const formStyle = {
         display: 'flex',
         flexDirection: 'column',
-        width: { xs: '400px', md: '500px' },
+        minWidth: { xs: '350px', md: '500px' },
         padding: '10px',
         gap: '20px',
         margin: { xs: '0px auto', md: '0px 0px 0px 0px' }
@@ -31,12 +29,20 @@ const Contact = () => {
         margin: 'auto'
     }
     const socialStyles = {
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
         display: 'flex',
-        width: { xs: '400px', md: '500px' },
-        flexDirection: { xs: 'row', md: 'column' },
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        minWidth: { xs: '350px', md: '500px' },
         gap: { xs: '5px', md: '50px' },
-        padding: '0px 10px',
-        margin: { xs: '0px auto', md: '0px 0px 0px 0px' }
+        columnGap: '50px',
+        padding: '10px 10px',
+        margin: { xs: '0px auto', md: '0px 0px 0px 0px' },
+        transition: 'box-shadow 0.3s ease-in-out',
+        ':hover': {
+            boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px"
+        }
     }
 
 
@@ -75,54 +81,18 @@ const Contact = () => {
                     </Button>
                 </Box>
                 <Box sx={socialStyles}>
-                    <Button
-                        sx={{
-                            height: { xs: '50px', md: '80px' },
-                            backgroundColor: 'blue',
-                            gap: { xs: '5px', md: '10' },
-                            padding: '15px',
-                            ':hover': {
-                                backgroundColor: 'white',
-                                color: 'blue'
-                            }
-                        }}
-                        variant='contained'
-                    >
-                        <FacebookIcon fontSize='large' />
-                        Facebook
-                    </Button>
-                    <Button
-                        sx={{
-                            height: { xs: '50px', md: '80px' },
-                            backgroundColor: 'purple',
-                            gap: { xs: '5px', md: '10' },
-                            padding: '15px',
-                            ':hover': {
-                                backgroundColor: 'white',
-                                color: 'purple'
-                            }
-                        }}
-                        variant='contained'
-                    >
-                        <InstagramIcon fontSize='large' />
-                        Instagram
-                    </Button>
-                    <Button
-                        sx={{
-                            height: { xs: '50px', md: '80px' },
-                            backgroundColor: 'red',
-                            gap: { xs: '5px', md: '10' },
-                            padding: '15px',
-                            ':hover': {
-                                backgroundColor: 'white',
-                                color: 'red'
-                            }
-                        }}
-                        variant='contained'
-                    >
-                        <YouTubeIcon fontSize='large' />
-                        Youtube
-                    </Button>
+                    <Typography sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', gap: '15px', fontSize: '16px' }} variant="h6" color="initial">
+                        <LocationCity />
+                        Karan Nagar , Near Gole Market,<br /> Srinagar - 190010
+                    </Typography>
+                    <Typography sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', gap: '15px', fontSize: '16px' }} variant="h6" color="initial">
+                        <EmailSharp />
+                        casetcollege2001@gmail.com
+                    </Typography>
+                    <Typography sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', gap: '15px', fontSize: '16px' }} variant="h6" color="initial">
+                        <PhoneAndroidOutlined />
+                        0194-2459153
+                    </Typography>
                 </Box>
             </Box>
         </>

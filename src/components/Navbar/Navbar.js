@@ -1,15 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { AppBar, Toolbar, Button, Box, Tabs, Tab, useMediaQuery, useTheme, } from '@mui/material'
 // import DrawerComp from './DrawerComp';
 // import logo from '../../assets/Logo1.svg'
 import logo1 from '../../assets/Group 1.svg'
+import { Link, useLocation } from 'react-router-dom';
 
 
 const Navbar = () => {
 
-    const [value, setValue] = useState();
+    const location = useLocation();
 
-    const pages = ["Home", "About", "Admission", "Notification", "Downloads", "Courses", "Contact"]
+    const [value, setValue] = useState(0);
+
+
+    const pages = useMemo(() => ["Home", "Notifications", "Downloads", "Events", "Contact", "About"], []);
+
+
+
+    useEffect(() => {
+        const path = location.pathname.substring(1);
+        const index = pages.indexOf(path);
+        setValue(index >= 0 ? index : 0);
+    }, [location, pages]);
+
 
     const theme = useTheme();
     const isMatch = useMediaQuery(theme.breakpoints.down("md"));
@@ -35,9 +48,9 @@ const Navbar = () => {
                 sx={{
                     backgroundColor: "#FAF9F6",
                     color: 'black',
-                    height: '100px'
+                    height: '100px',
                 }}>
-                <Toolbar sx={{ height: '100px' }}>
+                <Toolbar sx={{ height: '100px', }}>
                     {
                         isMatch ? (
                             <>
@@ -57,7 +70,11 @@ const Navbar = () => {
                                 >
                                     {
                                         pages.map((page, index) => (
-                                            <Tab sx={tabSX} key={index} label={page} />
+                                            <Tab
+                                                sx={tabSX} key={index} label={page}
+                                                component={Link}
+                                                to={`/${page}`}
+                                            />
                                         ))
                                     }
                                 </Tabs>
