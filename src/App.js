@@ -8,6 +8,7 @@ import { Downloads } from './pages/Downloads/Downloads.js';
 import About from './pages/About/About.js';
 import { AnimatePresence } from 'framer-motion';
 import Events from './pages/Events/Events.js';
+import Contact2 from './components/Contact/Contact2.js';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path='/Events' element={<Events />} />
           <Route path='/Notifications' element={<Notifications />} />
           <Route path='/Downloads' element={<Downloads />} />
+          <Route path='/Contact' element={<Contact2 />} />
         </Routes>
       </AnimatePresence>
       <Footer />

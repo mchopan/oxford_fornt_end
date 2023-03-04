@@ -55,8 +55,8 @@ const Footer = () => {
                     </Typography>
                     <hr style={horizontalLine} />
                     {
-                        arrayOfLinks.map(link => (
-                            <Typography variant='h6'>
+                        arrayOfLinks.map((link, index) => (
+                            <Typography key={index} variant='h6'>
                                 <Link color="inherit" href="" underline="hover">
                                     {link}
                                 </Link>
