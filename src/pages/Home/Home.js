@@ -7,7 +7,6 @@ import Notifications from "../../components/Notifications/Notifications";
 import PrincipleMessage from "../../components/PrincipleMessage/PrincipleMessage";
 import Testimonial from "../../components/Testimonial/Testimonial";
 import { motion } from 'framer-motion'
-import { Opacity } from "@mui/icons-material";
 
 
 function Home() {

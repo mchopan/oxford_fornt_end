@@ -7,6 +7,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { Downloads } from './pages/Downloads/Downloads.js';
 import About from './pages/About/About.js';
 import { AnimatePresence } from 'framer-motion';
+import Events from './pages/Events/Events.js';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/Home' element={<Home />} />
           <Route path='/About' element={<About />} />
+          <Route path='/Events' element={<Events />} />
           <Route path='/Notifications' element={<Notifications />} />
           <Route path='/Downloads' element={<Downloads />} />
         </Routes>

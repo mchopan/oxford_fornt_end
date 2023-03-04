@@ -5,8 +5,8 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import DownloadIcon from '@mui/icons-material/Download';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
-import CourcesIcon from '../../assets/book.png'
-import AdmissionIcon from '../../assets/admission.png'
+// import CourcesIcon from '../../assets/book.png'
+// import AdmissionIcon from '../../assets/admission.png'
 import InfoIcon from '@mui/icons-material/Info';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Link, useLocation } from 'react-router-dom';

@@ -1,82 +1,127 @@
-import { Box, CircularProgress, Grid, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import * as React from 'react';
+import { DataGrid } from '@mui/x-data-grid';
+
+import './style.css'
+import { Box, Card, CardContent, Typography, useMediaQuery, useTheme } from '@mui/material';
+
 import AcUnitIcon from '@mui/icons-material/AcUnit';
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion'
 
-const ITEMS_PER_PAGE = 20;
+const columns = [
+    { field: 'id', headerName: 'ID', width: 70, },
+    { field: 'title', headerName: 'Title', width: 130, },
+    {
+        field: 'description', headerName: 'Description', width: 920,
+        // renderCell: (params) => (
+        //     <div style={{ whiteSpace: 'normal', paddingTop: '5', fontWeight: '500', fontSize: '12px' }}>
+        //         {params.value}
+        //     </div>
+        // ),
+    },
+    {
+        field: 'date',
+        headerName: 'Date',
+        type: 'DateTimeLocale',
+        width: 90,
+    },
+];
 
-function Home() {
-    const [items, setItems] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [page, setPage] = useState(0);
-    const [hasMore, setHasMore] = useState(true);
-
-    const fetchItems = async () => {
-        setIsLoading(true);
-        const response = await fetch(`https://jsonplaceholder.typicode.com/posts?_start=${page * ITEMS_PER_PAGE}&_limit=${ITEMS_PER_PAGE}`);
-        const data = await response.json();
-        setIsLoading(false);
-        if (data.length > 0) {
-            setItems(prevItems => [...prevItems, ...data]);
-            setPage(prevPage => prevPage + 1);
-        } else {
-            setHasMore(false);
-        }
-    };
-
-    const handleScroll = event => {
-        const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
-        if (scrollHeight - scrollTop === clientHeight && !isLoading) {
-            setPage(prevPage => prevPage + 1);
-        }
-    };
-
-    const handleTouchMove = event => {
-        const { scrollTop, clientHeight, scrollHeight } = event.target;
-        if (scrollHeight - scrollTop === clientHeight && !isLoading) {
-            setPage(prevPage => prevPage + 1);
-        }
-    };
+const rows = [
+    { id: 1, title: 'Snow', description: 'lorma nata  naaa  anan ananaa  ana anan d e  we fc ewfjwef fe we vnwe f evnwev ewvwev we vnvew  vnwevn', date: '10/02/2022' },
+    { id: 2, title: 'Lannister', description: 'lorma nata  naaa  anan ananaa  ana anan d e  we fc ewfjwef fe we vnwe f evnwev ewvwev we vnvew  vnwevn', date: '10/02/2022' },
+    { id: 3, title: 'Lannister', description: 'lorma nata  naaa  anan ananaa  ana anan d e  we fc ewfjwef fe we vnwe f evnwev ewvwev we vnvew  vnwevn', date: '10/02/2022' },
+    { id: 4, title: 'Stark', description: 'lorma nata  naaa  anan ananaa  ana anan d e  we fc ewfjwef fe we vnwe f evnwev ewvwev we vnvew  vnwevn', date: '10/02/2022' },
+    { id: 5, title: 'Targaryen', description: 'lorma nata  naaa  anan ananaa  ana anan d e  we fc ewfjwef fe we vnwe f evnwev ewvwev we vnvew  vnwevn', date: null },
+    { id: 6, title: 'Melisandre', description: 'lorma nata  naaa  anan ananaa  ana anan d e  we fc ewfjwef fe we vnwe f evnwev ewvwev we vnvew  vnwevn', date: '10/02/2022' },
+    { id: 7, title: 'Clifford', description: 'lorma nata  naaa  anan ananaa  ana anan d e  we fc ewfjwef fe we vnwe f evnwev ewvwev we vnvew  vnwevn', date: '10/02/2022' },
+    { id: 8, title: 'Frances', description: 'lorma nata  naaa  anan ananaa  ana anan d e  we fc ewfjwef fe we vnwe f evnwev ewvwev we vnvew  vnwevn', date: '10/02/2022' },
+    { id: 9, lastName: 'Roxie', description: 'lorma nata  naaa  anan ananaa  ana anan d e  we fc ewfjwef fe we vnwe f evnwev ewvwev we vnvew  vnwevnlorma nata  naaa  anan ananaa  ana anan d e  we fc ewfjwef fe we vnwe f evnwev ewvwev we vnvew  vnwevnlorma nata  naaa  anan ananaa  ana anan d e  we fc ewfjwef fe we vnwe f evnwev ewvwev we vnvew  vnwevn', date: '10/02/2022' },
+];
 
 
-    useEffect(() => {
-        fetchItems();
-    }, []);
+const transition = {
+    duration: 0.3,
+    ease: 'easeOut',
+};
 
-    useEffect(() => {
-        if (page > 0) {
-            fetchItems();
-        }
-    }, [page]);
+const variants = {
+    enter: {
+        x: '-100%',
+        opacity: 0,
+    },
+    center: {
+        x: 0,
+        opacity: 1,
+        transition,
+    },
+    exit: {
+        x: '100%',
+        opacity: 0,
+        transition,
+    },
+};
 
+export default function Notifications() {
 
-    // styles
+    const theme = useTheme();
+    const isSmScreen = useMediaQuery(theme.breakpoints.up('sm'));
 
-    const BoxStyle = {
-        color: 'black',
+    if (!isSmScreen) {
+        return (
+            <>
+                <motion.div
+                    variants={variants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+
+                >
+                    <Typography variant="h2" textAlign="center" color="white" backgroundColor="gray">
+                        <AcUnitIcon /><AcUnitIcon />Notif<AcUnitIcon /><AcUnitIcon />
+                    </Typography>
+                    <Box sx={{
+                        padding: '10px',
+                        margin: '5px',
+                        height: 700,
+                        overflowY: 'scroll',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        rowGap: '10px',
+                        alignItems: 'center'
+                    }}>
+                        <Card sx={{ width: 300 }}>
+                            <CardContent>
+                                <Typography variant="h5" component="div">
+                                    Title
+                                </Typography>
+                                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                    12/02/2022
+                                </Typography>
+                                <Typography variant="body2">
+                                    evnwev ewvwev we vnvew vnwevnlorma nata naaa anan ananaa ana anan d e we fc ewfjwef fe we vnwe f evnwev ewvwev we vnvew vnwevnlorma nata naaa anan ananaa ana anan d e we fc ewfjwef fe we vnwe f evnwev ewvwev
+                                    evnwev ewvwev we vnvew vnwevnlorma nata naaa anan ananaa ana anan d e we fc ewfjwef fe we vnwe f evnwev ewvwev we vnvew vnwevnlorma nata naaa anan ananaa ana anan d e we fc ewfjwef fe we vnwe f evnwev ewvwev
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                        <Card sx={{ width: 300 }}>
+                            <CardContent>
+                                <Typography variant="h5" component="div">
+                                    Title
+                                </Typography>
+                                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                    12/02/2022
+                                </Typography>
+                                <Typography variant="body2">
+                                    evnwev ewvwev we vnvew vnwevnlorma nata naaa anan ananaa ana anan d e we fc ewfjwef fe we vnwe f evnwev ewvwev we vnvew vnwevnlorma nata naaa anan ananaa ana anan d e we fc ewfjwef fe we vnwe f evnwev ewvwev
+                                    evnwev ewvwev we vnvew vnwevnlorma nata naaa anan ananaa ana anan d e we fc ewfjwef fe we vnwe f evnwev ewvwev we vnvew vnwevnlorma nata naaa anan ananaa ana anan d e we fc ewfjwef fe we vnwe f evnwev ewvwev
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Box>
+                </motion.div>
+            </>
+        )
     }
-
-    const transition = {
-        duration: 0.3,
-        ease: 'easeOut',
-    };
-
-    const variants = {
-        enter: {
-            x: '-100%',
-            opacity: 0,
-        },
-        center: {
-            x: 0,
-            opacity: 1,
-            transition,
-        },
-        exit: {
-            x: '100%',
-            opacity: 0,
-            transition,
-        },
-    };
 
     return (
         <motion.div
@@ -84,33 +129,19 @@ function Home() {
             initial="enter"
             animate="center"
             exit="exit"
+
         >
-            <Typography variant="h3" textAlign="center" color="white" backgroundColor="gray">
+            <Typography variant="h2" textAlign="center" color="white" backgroundColor="gray">
                 <AcUnitIcon /><AcUnitIcon />Notifications<AcUnitIcon /><AcUnitIcon />
             </Typography>
-            <Grid container spacing={2} onTouchMove={handleTouchMove} onScroll={handleScroll} sx={{ padding: '10px', marginTop: '0px', height: '70vh', overflowY: 'scroll', }}>
-                {items.slice(0, (page + 1) * 20).map(post => (
-                    <Grid item key={post}>
-                        <Box sx={BoxStyle} key={post.id}>
-                            <Typography variant="h6" color="initial">{post.title}</Typography>
-                            <Typography variant="body"> {post.body}</Typography>
-                        </Box>
-                    </Grid>
-                ))}
-                {isLoading && (
-                    <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', py: 2 }}>
-                        <CircularProgress />
-                    </Grid>
-                )}
-                {!hasMore && (
-                    <Grid item xs={12}>
-                        <p>No more items to load</p>
-                    </Grid>
-                )}
-            </Grid>
+            <Box sx={{ height: 500, width: { xs: '100%', md: '90%' }, margin: 'auto', }}>
+                <DataGrid
+                    rows={rows}
+                    columns={columns}
+                    pageSize={10}
+                    rowsPerPageOptions={[5]}
+                />
+            </Box>
         </motion.div>
     );
 }
-
-export default Home;
-// 
