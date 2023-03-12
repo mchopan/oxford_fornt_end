@@ -33,7 +33,7 @@ const NdeTabs = () => {
         Notification.getAllNotifications(response => {
             console.log(response)
             if (response.status === 'success') {
-                setNotifications(response.data);
+                setNotifications(response.data.notifications);
             }
             else {
                 setNotifications([]);
@@ -85,7 +85,7 @@ const NdeTabs = () => {
                             >
 
                                 {
-                                    notifications.map((item, index) => {
+                                    notifications?.map((item, index) => {
                                         return (
                                             <SwiperSlide>
                                                 <motion.div
@@ -107,14 +107,19 @@ const NdeTabs = () => {
                                                         }}
                                                     >
                                                         <Typography variant="overline" color="black" sx={{ display: 'flex', justifyContent: 'space-between' }} >
-                                                            {item.notificationName}
+                                                            {item.notiName}
                                                             <Typography variant="caption" color="black">
-                                                                {/* {item.localDateTime} */}
-                                                                12/15/1998
+                                                                {new Date(item.createdAt).toLocaleString('en-IN', {
+                                                                    day: 'numeric',
+                                                                    month: 'short',
+                                                                    year: 'numeric',
+                                                                    hour: 'numeric',
+                                                                    minute: 'numeric',
+                                                                })}
                                                             </Typography>
                                                         </Typography>
                                                         <Typography variant="body1" color="blue" >
-                                                            {item.notificationDescription}
+                                                            {item.notiDesc}
                                                         </Typography>
                                                     </List>
                                                 </motion.div>

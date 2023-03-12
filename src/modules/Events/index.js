@@ -1,56 +1,54 @@
 import ConfigApi from "../axios/index";
 
-class Notification {
-
-
-    addNotification = (data, callBack) => {
+class Events {
+    addEvent = (data, callBack) => {
         ConfigApi({
             method: 'POST',
-            url: `/notifications`,
+            url: `/events`,
             data: data
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });
             }
         }).catch(error => {
-            console.log('Error occure while adding Notification', error.message);
+            console.log('Error occure while adding Event', error.message);
             callBack({ status: 'error' });
         });
     }
 
-    getAllNotifications = callBack => {
+    getAllEvents = callBack => {
         ConfigApi({
             method: "GET",
-            url: `/notifications`
+            url: `/events`
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });
             }
         }).catch(error => {
-            console.log('Error occure while getting Notifications', error.message);
+            console.log('Error occure while getting Events', error.message);
             callBack({ status: 'error' });
         });
     }
 
-    updateNotificationById = (id, data, callBack) => {
+    updateEventById = (id, data, callBack) => {
         ConfigApi({
             method: 'PUT',
-            url: `/notifications/${id}`,
+            url: `/events/${id}`,
             data: data
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });
             }
         }).catch(error => {
-            console.log('Error occure while updating Notifications', error.message);
+            console.log('Error occure while updating Event', error.message);
             callBack({ status: 'error' });
         });
     }
 
-    deleteNotificationById = (id, callBack) => {
+    deleteEventById = (id, callBack) => {
         ConfigApi({
             method: 'DELETE',
-            url: `/notifications/${id}`
+            url: `/events/${id}`
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });
@@ -64,4 +62,4 @@ class Notification {
 
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default new Notification();
+export default new Events();
