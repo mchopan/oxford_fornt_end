@@ -113,12 +113,13 @@ export default function UsersHandler() {
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
     const [newData, setNewData] = useState({
-        email: "",
+        email: "", //firstName, lastName, lastName, email, phoneNumber, userType, password
         firstName: "",
         lastName: "",
         phoneNumber: "",
         userName: "",
-        userType: ""
+        userType: "",
+        password: ""
     });
 
     useEffect(() => {
@@ -196,7 +197,7 @@ export default function UsersHandler() {
             <ToastContainer />
             <Box sx={{ marginBottom: "10px", width: '100%', display: 'flex', justifyContent: 'space-around' }}>
                 <Button variant="outlined" onClick={handleClickOpen}>
-                    Add New Data
+                    Add New User
                 </Button>
             </Box>
             <DataGrid
@@ -220,7 +221,7 @@ export default function UsersHandler() {
                 open={open}
                 onClose={handleClose}
             >
-                <DialogTitle>Add New Notification</DialogTitle>
+                <DialogTitle sx={{ textAlign: 'center' }}>Add New User</DialogTitle>
                 <DialogContent>
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
@@ -232,7 +233,7 @@ export default function UsersHandler() {
                                 type="text"
                                 fullWidth
                                 variant="standard"
-                                onChange={(e) => setNewData({ ...usersData, firstName: e.target.value })}
+                                onChange={(e) => setNewData({ ...newData, firstName: e.target.value })}
                             />
                         </Grid>
                         <Grid item xs={6}>
@@ -244,7 +245,7 @@ export default function UsersHandler() {
                                 type="text"
                                 fullWidth
                                 variant="standard"
-                                onChange={(e) => setNewData({ ...usersData, lastName: e.target.value })}
+                                onChange={(e) => setNewData({ ...newData, lastName: e.target.value })}
                             />
                         </Grid>
                         <Grid item xs={6}>
@@ -256,7 +257,7 @@ export default function UsersHandler() {
                                 type="text"
                                 fullWidth
                                 variant="standard"
-                                onChange={(e) => setNewData({ ...usersData, userName: e.target.value })}
+                                onChange={(e) => setNewData({ ...newData, userName: e.target.value })}
                             />
                         </Grid>
                         <Grid item xs={6}>
@@ -268,7 +269,7 @@ export default function UsersHandler() {
                                 type="email"
                                 fullWidth
                                 variant="standard"
-                                onChange={(e) => setNewData({ ...usersData, email: e.target.value })}
+                                onChange={(e) => setNewData({ ...newData, email: e.target.value })}
                             />
                         </Grid>
                         <Grid item xs={6}>
@@ -280,13 +281,25 @@ export default function UsersHandler() {
                                 type="tel"
                                 fullWidth
                                 variant="standard"
-                                onChange={(e) => setNewData({ ...usersData, phoneNumber: e.target.value })}
+                                onChange={(e) => setNewData({ ...newData, phoneNumber: e.target.value })}
                             />
                         </Grid>
                         <Grid item xs={6}>
+                            <TextField
+                                autoFocus
+                                margin="dense"
+                                id="password"
+                                label="Password"
+                                type="password"
+                                fullWidth
+                                variant="standard"
+                                onChange={(e) => setNewData({ ...newData, password: e.target.value })}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
                             <InputLabel htmlFor="role">User Role</InputLabel>
                             <Select
-                                onChange={(e) => setNewData({ ...usersData, userType: e.target.value })}
+                                onChange={(e) => setNewData({ ...newData, userType: e.target.value })}
                                 fullWidth
                                 variant="standard"
                                 margin="dense"
