@@ -157,7 +157,7 @@ const Index = () => {
                 </Box>
                 <Box className="container">
                     <TabPanel className="table-panel" value={value} index={0}>
-                        <SignUp />
+                        <h1>Working on it... </h1>
                     </TabPanel>
                     <TabPanel className="table-panel" value={value} index={1}>
                         <Notifications />
