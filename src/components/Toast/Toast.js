@@ -8,7 +8,7 @@ const Toast = ({ type, message }) => {
             return (
                 <div >
                     {toast.success(message, {
-                        position: "top-right",
+                        position: "top-center",
                         autoClose: 5000,
                         hideProgressBar: false,
                         closeOnClick: true,
@@ -23,17 +23,29 @@ const Toast = ({ type, message }) => {
             return (
                 <div>
                     {toast.error(message, {
-                        position: toast.POSITION.TOP_RIGHT,
-                        autoClose: 3000,
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
                     })}
                 </div>
             );
         case 'warning':
             return (
                 <div>
-                    {toast.warning(message, {
-                        position: toast.POSITION.TOP_RIGHT,
-                        autoClose: 3000,
+                    {toast.warn(message, {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
                     })}
                 </div>
             );

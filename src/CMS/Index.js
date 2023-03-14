@@ -2,18 +2,25 @@ import { Box } from '@mui/system'
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Events from './EventHandler'
 import Notifications from './NotifyHandler'
-import Testemionals from './TestemonialHandler'
+import Testimonials from './TestemonialHandler'
 import Downloads from './DownloadHandler'
+import Users from './Users'
 import './styles.css'
-import { Avatar, Typography } from '@mui/material';
+import { Avatar, Typography, Tooltip } from '@mui/material';
 import SignUp from '../components/Signup/Signup';
-
+import { motion } from 'framer-motion'
+import { ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import Toast from '../components/Toast/Toast';
+import LogoutIcon from '@mui/icons-material/Logout';
+import HomeIcon from '@mui/icons-material/Home';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
+
 
     return (
         <div
@@ -46,13 +53,62 @@ function a11yProps(index) {
 }
 
 const Index = () => {
+
     const [value, setValue] = React.useState(0);
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
+    const [user, setUser] = useState({})
+
+    useEffect(() => {
+        setUser(JSON.parse(localStorage.getItem('user')));
+    }, [])
+
+
+    const transition = {
+        duration: 0.3,
+        ease: 'easeOut',
+    };
+
+    const variants = {
+        enter: {
+            x: '-100%',
+            opacity: 0,
+        },
+        center: {
+            x: 0,
+            opacity: 1,
+            transition,
+        },
+        exit: {
+            x: '100%',
+            opacity: 0,
+            transition,
+        },
+    };
+
+    const navigate = useNavigate();
+    const HandHomeButton = () => {
+        navigate('/Home')
+    }
+
+    const HandleLogout = () => {
+        localStorage.removeItem('token')
+        localStorage.removeItem('user')
+        navigate('/Home')
+        Toast({ type: 'success', message: `You have been successfully logged out. Have a great day!` });
+
+    }
+
     return (
-        <Box className="master-container">
+        <motion.div
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            className="master-container" >
+            <ToastContainer />
             <Box className="main-container">
                 <Box className="navigation">
                     <Box sx={{
@@ -62,14 +118,26 @@ const Index = () => {
                         justifyContent: "space-evenly",
                         backgroundColor: "#f3f3b6"
                     }}>
-                        <Avatar
-                            sx={{ width: '60px', height: '60px' }}
-                            src="mm"
-                            alt='Manzoor'
-                        />
-                        <Typography variant="h5">
-                            Manzoor
-                        </Typography>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                            <Avatar
+                                sx={{ width: '60px', height: '60px' }}
+                                src="/"
+                                alt={user.firstName}
+                            />
+                            <Typography variant="h6">
+                                {user.firstName}
+                            </Typography>
+                        </Box>
+                        <Tooltip title="Home">
+                            <iconButton onClick={HandHomeButton}>
+                                <HomeIcon />
+                            </iconButton>
+                        </Tooltip>
+                        <Tooltip title="Logout">
+                            <iconButton onClick={HandleLogout}>
+                                <LogoutIcon />
+                            </iconButton>
+                        </Tooltip>
                     </Box>
                     <Tabs
                         orientation="vertical"
@@ -84,6 +152,7 @@ const Index = () => {
                         <Tab label="Events" {...a11yProps(2)} />
                         <Tab label="Downloads" {...a11yProps(3)} />
                         <Tab label="Testemonials" {...a11yProps(4)} />
+                        <Tab label="Users" {...a11yProps(5)} />
                     </Tabs>
                 </Box>
                 <Box className="container">
@@ -100,12 +169,16 @@ const Index = () => {
                         <Downloads />
                     </TabPanel>
                     <TabPanel className="table-panel" value={value} index={4}>
-                        <Testemionals />
+                        <Testimonials />
+                    </TabPanel>
+                    <TabPanel className="table-panel" value={value} index={5}>
+                        <Users />
                     </TabPanel>
                 </Box>
             </Box>
-        </Box>
+        </motion.div >
     )
 }
 
 export default Index
+

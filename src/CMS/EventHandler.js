@@ -216,7 +216,7 @@ export default function NotifyHandler() {
             type="text"
             fullWidth
             variant="standard"
-            onChange={(e) => setNewData({ eventName: e.target.value })}
+            onChange={(e) => setNewData({ ...newData, eventName: e.target.value })}
           />
           <TextField
             multiline
@@ -228,7 +228,7 @@ export default function NotifyHandler() {
             type="text"
             fullWidth
             variant="standard"
-            onChange={(e) => setNewData({ eventDesc: e.target.value })}
+            onChange={(e) => setNewData({ ...newData, eventDesc: e.target.value })}
           />
           <TextField
             autoFocus
@@ -238,7 +238,7 @@ export default function NotifyHandler() {
             type="datetime-local"
             fullWidth
             variant="standard"
-            onChange={(e) => setNewData({ eventTime: e.target.value })}
+            onChange={(e) => setNewData({ ...newData, eventTime: e.target.value })}
             InputLabelProps={{ shrink: true }}
           />
         </DialogContent>

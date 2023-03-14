@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import Notification from '../modules/Notification';
 import { useState, useEffect } from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, TextField, Tooltip } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, TextField } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 import Toast from '../components/Toast/Toast'
 import { ToastContainer } from 'react-toastify';
@@ -11,7 +11,11 @@ import { ToastContainer } from 'react-toastify';
 
 
 
+
+
 export default function NotifyHandler() {
+
+
   const columns = [
     { field: '_id', headerName: 'ID', width: 90 },
     {
@@ -157,11 +161,13 @@ export default function NotifyHandler() {
   }
   // 
 
+
+
   const getRowId = (row) => row._id;
   return (
     <Box sx={{ height: '100%', width: '100%' }}>
       <ToastContainer />
-      <Box sx={{ marginBottom: "10px", width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
+      <Box sx={{ marginBottom: "10px", width: '100%', display: 'flex', justifyContent: 'space-around' }}>
         <Button variant="outlined" onClick={handleClickOpen}>
           Add New Data
         </Button>

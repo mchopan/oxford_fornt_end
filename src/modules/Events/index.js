@@ -5,7 +5,10 @@ class Events {
         ConfigApi({
             method: 'POST',
             url: `/events`,
-            data: data
+            data: data,
+            headers: {
+                authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
+            }
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });
@@ -34,7 +37,10 @@ class Events {
         ConfigApi({
             method: 'PUT',
             url: `/events/${id}`,
-            data: data
+            data: data,
+            headers: {
+                authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
+            }
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });
@@ -48,7 +54,10 @@ class Events {
     deleteEventById = (id, callBack) => {
         ConfigApi({
             method: 'DELETE',
-            url: `/events/${id}`
+            url: `/events/${id}`,
+            headers: {
+                authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
+            }
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });
