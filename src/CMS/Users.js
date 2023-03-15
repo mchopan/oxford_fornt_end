@@ -201,7 +201,7 @@ export default function UsersHandler() {
                 </Button>
             </Box>
             <DataGrid
-                autoHeight
+                autoHeight={false}
                 rows={usersData}
                 columns={columns}
                 getRowId={getRowId}

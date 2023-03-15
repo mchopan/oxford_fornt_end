@@ -50,7 +50,7 @@ export default function DownloadHandler() {
     return (
         <Box sx={{ height: '100%', width: '100%' }}>
             <DataGrid
-                autoHeight
+                autoHeight={false}
                 rows={rows}
                 columns={columns}
                 initialState={{

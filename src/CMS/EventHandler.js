@@ -186,7 +186,7 @@ export default function NotifyHandler() {
         </Button>
       </Box>
       <DataGrid
-        autoHeight
+        autoHeight={false}
         rows={eventData}
         columns={columns}
         getRowId={getRowId}

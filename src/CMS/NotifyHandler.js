@@ -173,7 +173,7 @@ export default function NotifyHandler() {
         </Button>
       </Box>
       <DataGrid
-        autoHeight
+        autoHeight={false}
         rows={notifyData}
         columns={columns}
         getRowId={getRowId}
