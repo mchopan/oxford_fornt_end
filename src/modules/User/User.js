@@ -6,7 +6,10 @@ class User {
         ConfigApi({
             method: 'POST',
             url: `/users/signup`,
-            data: data
+            data: data,
+            headers: {
+                authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
+            }
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });
@@ -52,7 +55,10 @@ class User {
         ConfigApi({
             method: 'PUT',
             url: `/users/${id}`,
-            data: data
+            data: data,
+            headers: {
+                authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
+            }
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });
@@ -67,6 +73,9 @@ class User {
         ConfigApi({
             method: 'DELETE',
             url: `/users/${id}`,
+            headers: {
+                authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
+            }
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });

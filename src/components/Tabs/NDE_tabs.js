@@ -9,17 +9,20 @@ import Notification from '../../modules/Notification/index'
 import { motion } from "framer-motion"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper';
-
+import Events from '../../modules/Events';
+import './style.css'
+import { borderRadius } from '@mui/system';
 const NdeTabs = () => {
 
     const arrays = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
+    const currentTime = new Date();
 
     // Tab values
     const [value, setValue] = useState('1');
     // Notifications
     const [notifications, setNotifications] = useState([]);
-
+    const [events, setEvents] = useState([])
     // handle tab change 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -27,8 +30,9 @@ const NdeTabs = () => {
 
     useEffect(() => {
         getAllNotifications();
+        getAllEvents();
     }, [])
-
+    // Nitifications
     const getAllNotifications = () => {
         Notification.getAllNotifications(response => {
             console.log(response)
@@ -40,6 +44,21 @@ const NdeTabs = () => {
             }
         })
     }
+
+    // Downloads
+    // TEvents
+    const getAllEvents = () => {
+        Events.getAllEvents(response => {
+            if (response.status === 'success') {
+                setEvents(response.data.events)
+            }
+            else {
+                setEvents([]);
+            }
+        })
+    }
+
+
     //animation on changing the tab
     const boxAnimation = {
         initial: {
@@ -69,7 +88,7 @@ const NdeTabs = () => {
                         </TabList>
                     </Box>
                     <TabPanel value="1">
-                        <Box sx={{ maxHeight: '570px' }}>
+                        <Box sx={{ maxHeight: '570px', }}>
                             <Swiper
                                 direction={"vertical"}
                                 slidesPerView={7}
@@ -103,9 +122,16 @@ const NdeTabs = () => {
                                                             cursor: 'pointer',
                                                             margin: '5px',
                                                             padding: '5px',
-                                                            boxShadow: 'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset'
+                                                            boxShadow: "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset"
                                                         }}
                                                     >
+                                                        {currentTime.getTime() - new Date(item.createdAt).getTime() < 86400000 && (
+                                                            <div style={{ position: 'absolute', width: '98%', textAlign: 'center', padding: '5px', color: 'white' }}>
+                                                                <div style={{ backgroundColor: 'red', width: '30px', margin: 'auto', fontWeight: '500', fontSize: '9px', borderRadius: '10px' }}>
+                                                                    New
+                                                                </div>
+                                                            </div>
+                                                        )}
                                                         <Typography variant="overline" color="black" sx={{ display: 'flex', justifyContent: 'space-between' }} >
                                                             {item.notiName}
                                                             <Typography variant="caption" color="black">
@@ -150,7 +176,7 @@ const NdeTabs = () => {
                                 {
                                     arrays.map((item, index) => {
                                         return (
-                                            <SwiperSlide>
+                                            <SwiperSlide style={{ marginBottom: '10px' }}>
                                                 <motion.div
                                                     whileHover={{ scale: 1 }}
                                                     whileTap={{ scale: 0.9 }}
@@ -165,9 +191,16 @@ const NdeTabs = () => {
                                                             cursor: 'pointer',
                                                             margin: '5px',
                                                             padding: '5px',
-                                                            boxShadow: 'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset'
+                                                            boxShadow: "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset"
                                                         }}
                                                     >
+                                                        {currentTime.getTime() - new Date(item.createdAt).getTime() < 86400000 && (
+                                                            <div style={{ position: 'absolute', width: '98%', textAlign: 'center', padding: '5px', color: 'white' }}>
+                                                                <div style={{ backgroundColor: 'red', width: '30px', margin: 'auto', fontWeight: '500', fontSize: '9px', borderRadius: '10px' }}>
+                                                                    New
+                                                                </div>
+                                                            </div>
+                                                        )}
                                                         <Typography variant="body1" color="black" sx={{ display: 'flex', justifyContent: 'space-between' }} >
                                                             File Name
                                                             <Typography variant="caption" color="black">
@@ -189,7 +222,7 @@ const NdeTabs = () => {
 
                     </TabPanel>
                     <TabPanel value="3">
-                        <Box sx={{ maxHeight: '570px' }}>
+                        <Box sx={{ maxHeight: '570px', }}>
                             <Swiper
                                 direction={"vertical"}
                                 slidesPerView={7}
@@ -198,13 +231,13 @@ const NdeTabs = () => {
                                 autoplay={{
                                     delay: 1000,
                                     speed: 1000,
-                                    pauseOnHover: true
+                                    pauseOnHover: true,
                                 }}
                                 modules={[Autoplay]}
-                                style={{ maxHeight: '570px' }}
+                                style={{ maxHeight: '570px', }}
                             >
                                 {
-                                    arrays.map((item, index) => {
+                                    events.map((item, index) => {
                                         return (
                                             <SwiperSlide>
                                                 <motion.div
@@ -221,18 +254,38 @@ const NdeTabs = () => {
                                                             cursor: 'pointer',
                                                             margin: '5px',
                                                             padding: '5px',
-                                                            boxShadow: 'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset'
+                                                            boxShadow: "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
+
                                                         }}
                                                     >
+                                                        {currentTime.getTime() - new Date(item.createdAt).getTime() < 86400000 && (
+                                                            <div style={{ position: 'absolute', width: '98%', textAlign: 'center', padding: '5px', color: 'white' }}>
+                                                                <div style={{ backgroundColor: 'red', width: '30px', margin: 'auto', fontWeight: '500', fontSize: '9px', borderRadius: '10px' }}>
+                                                                    New
+                                                                </div>
+                                                            </div>
+                                                        )}
                                                         <Typography variant="overline" color="black" sx={{ display: 'flex', justifyContent: 'space-between' }} >
-                                                            Event Name
+                                                            {item.eventName}
                                                             <Typography variant="caption" color="black">
-                                                                {/* {item.localDateTime} */}
-                                                                Posted: 12/15/1998
+                                                                {new Date(item.createdAt).toLocaleString('en-IN', {
+                                                                    day: 'numeric',
+                                                                    month: 'short',
+                                                                    year: 'numeric',
+                                                                    hour: 'numeric',
+                                                                    minute: 'numeric',
+                                                                })}
                                                             </Typography>
                                                         </Typography>
-                                                        <Typography variant="h6" color="blue" >
-                                                            Event at College
+                                                        <Typography variant="body1" color="blue" >
+                                                            {item.eventDesc}<br />
+                                                            {new Date(item.eventTime).toLocaleString('en-IN', {
+                                                                day: 'numeric',
+                                                                month: 'short',
+                                                                year: 'numeric',
+                                                                hour: 'numeric',
+                                                                minute: 'numeric',
+                                                            })}
                                                         </Typography>
                                                     </List>
                                                 </motion.div>
