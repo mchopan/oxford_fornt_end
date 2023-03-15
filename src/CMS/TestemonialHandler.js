@@ -94,9 +94,8 @@ export default function TestemonialHandler() {
             <Box>
 
             </Box>
-            <Box sx={{ height: '100%', width: '100%' }}>
+            <Box sx={{ height: 520, width: '100%' }}>
                 <DataGrid
-                    autoHeight={false}
                     getRowId={getRowId}
                     rows={testem}
                     columns={columns}

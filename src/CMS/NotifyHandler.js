@@ -165,7 +165,7 @@ export default function NotifyHandler() {
 
   const getRowId = (row) => row._id;
   return (
-    <Box sx={{ height: '100%', width: '100%' }}>
+    <Box sx={{ height: 520, width: '100%' }}>
       <ToastContainer />
       <Box sx={{ marginBottom: "10px", width: '100%', display: 'flex', justifyContent: 'space-around' }}>
         <Button variant="outlined" onClick={handleClickOpen}>
@@ -173,7 +173,6 @@ export default function NotifyHandler() {
         </Button>
       </Box>
       <DataGrid
-        autoHeight={false}
         rows={notifyData}
         columns={columns}
         getRowId={getRowId}
