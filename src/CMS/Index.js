@@ -10,13 +10,13 @@ import Downloads from './DownloadHandler'
 import Users from './Users'
 import './styles.css'
 import { Avatar, Typography, Tooltip } from '@mui/material';
-import SignUp from '../components/Signup/Signup';
 import { motion } from 'framer-motion'
 import { ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import Toast from '../components/Toast/Toast';
 import LogoutIcon from '@mui/icons-material/Logout';
 import HomeIcon from '@mui/icons-material/Home';
+import Files from './Files';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -153,6 +153,7 @@ const Index = () => {
                         <Tab label="Downloads" {...a11yProps(3)} />
                         <Tab label="Testemonials" {...a11yProps(4)} />
                         <Tab label="Users" {...a11yProps(5)} />
+                        <Tab label="Images" {...a11yProps(6)} />
                     </Tabs>
                 </Box>
                 <Box className="container">
@@ -173,6 +174,9 @@ const Index = () => {
                     </TabPanel>
                     <TabPanel className="table-panel" value={value} index={5}>
                         <Users />
+                    </TabPanel>
+                    <TabPanel className="table-panel" value={value} index={6}>
+                        <Files />
                     </TabPanel>
                 </Box>
             </Box>
