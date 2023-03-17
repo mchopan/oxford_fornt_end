@@ -203,7 +203,7 @@ export default function NotifyHandler() {
             type="text"
             fullWidth
             variant="standard"
-            onChange={(e) => setNewData({ notiName: e.target.value })}
+            onChange={(e) => setNewData({ ...newData, notiName: e.target.value })}
           />
           <TextField
             multiline
@@ -215,7 +215,7 @@ export default function NotifyHandler() {
             type="text"
             fullWidth
             variant="standard"
-            onChange={(e) => setNewData({ notiDesc: e.target.value })}
+            onChange={(e) => setNewData({ ...newData, notiDesc: e.target.value })}
           />
         </DialogContent>
         <DialogActions>

@@ -1,6 +1,8 @@
 import { Button, Card, CardActionArea, CardActions, CardMedia } from '@mui/material'
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react'
+import Toast from '../components/Toast/Toast'
+import { ToastContainer } from 'react-toastify';
 import FilesApi from '../modules/Files/index'
 
 const Files = () => {
@@ -48,26 +50,31 @@ const Files = () => {
 
     // Delete
 
-    const handleDelete = (id) => {
-        FilesApi.deleteFile(id, (response) => {
-            if (response.status === 'success') {
-                getImages();
-            }
-            else {
-                console.log(response.message);
-            }
-        })
+    const handleDelete = (event, id) => {
+        event.preventDefault();
+        if (window.confirm('Are you sure you want to delete this image?')) {
+            FilesApi.deleteFile(id, response => {
+                if (response.status === 'success') {
+                    getImages();
+                    Toast({ type: 'success', message: `Image deleted successfully!` });
+                    console.log('Image deleted successfully:', response.data);
+                } else {
+                    Toast({ type: 'error', message: `Error deleting Image` });
+                    console.error('Error deleting image:', response.error);
+                }
+            })
+        }
     }
 
 
     return (
         <>
+            <ToastContainer />
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <input
                     type="file"
                     accept="image/*"
                     onChange={(e) => handleChange(e)}
-                    style={{ fontSize: "16px", padding: "8px" }}
                 />
                 <Button
                     variant="contained"
@@ -92,7 +99,7 @@ const Files = () => {
                                     />
                                 </CardActionArea>
                                 <CardActions sx={{ position: 'relative', height: '48px' }}>
-                                    <Button onClick={(e) => handleDelete(items._id)} sx={{ position: 'absolute', right: 0 }} size="small" color="primary">
+                                    <Button onClick={(e) => handleDelete(e, items.publicId)} sx={{ position: 'absolute', right: 0 }} size="small" color="primary">
                                         Delete
                                     </Button>
                                 </CardActions>
