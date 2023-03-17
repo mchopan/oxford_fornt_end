@@ -34,17 +34,23 @@ const Files = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(file);
         if (file) {
             const formData = new FormData();
             formData.append('photo', file);
             // Calling api to post my image
             FilesApi.uploadFile(formData, (response) => {
-                console.log(response);
+                if (response.status === 'success') {
+                    Toast({ type: 'success', message: `Image Uploaded successfully!` });
+                    getImages();
+                    console.log(response);
+                }
+                else {
+                    Toast({ type: 'error', message: `Error uploading Image` });
+                    console.error('Error uploading image:', response.error);
+                }
             });
-            getImages();
         } else {
-            alert('Please select an image file');
+            Toast({ type: 'warn', message: `Please select an image file` });
         }
     };
 
