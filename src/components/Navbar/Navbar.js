@@ -17,8 +17,8 @@ const Navbar = () => {
 
     const navigate = useNavigate();
 
-    const token = JSON.parse(localStorage.getItem('token'));
-    const user = JSON.parse(localStorage.getItem('user'));
+    const token = JSON.parse(localStorage.getItem('accessToken'));
+
 
     const location = useLocation();
     const [value, setValue] = useState(0);
@@ -65,10 +65,11 @@ const Navbar = () => {
         User.login(newData, response => {
             if (response.status === 'success') {
                 localStorage.setItem("user", JSON.stringify(response.data.user))
-                localStorage.setItem("token", JSON.stringify(response.data.token))
-                navigate('/Admin')
+                localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken))
+                localStorage.setItem("refreshToken", JSON.stringify(response.data.refreshToken))
                 console.log('Login successful!:', response.data);
                 Toast({ type: 'success', message: `Login successful! Welcome back ${response.data.user.firstName}!` });
+                navigate('/admin')
             } else {
                 Toast({ type: 'error', message: `Error occoured while login` });
                 console.error('Error occoured while login', response.error);

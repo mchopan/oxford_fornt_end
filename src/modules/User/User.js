@@ -7,9 +7,6 @@ class User {
             method: 'POST',
             url: `/users/signup`,
             data: data,
-            headers: {
-                authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
-            }
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });
@@ -37,6 +34,23 @@ class User {
             });
     }
 
+    verifyAuth = (callBack) => {
+        ConfigApi({
+            method: 'GET',
+            url: `/users/verify`,
+        }).then((response) => {
+            if (response.data) {
+                callBack({ status: 'success', data: response.data });
+            }
+            else {
+                callBack({ status: 'error', data: response });
+            }
+        }).catch(error => {
+            console.log('Error occurred while verifying auth', error.message);
+            callBack({ status: 'error' });
+        });
+    }
+
     getAllUsers = (callBack) => {
         ConfigApi({
             method: 'GET',
@@ -56,9 +70,6 @@ class User {
             method: 'PUT',
             url: `/users/${id}`,
             data: data,
-            headers: {
-                authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
-            }
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });
@@ -73,9 +84,6 @@ class User {
         ConfigApi({
             method: 'DELETE',
             url: `/users/${id}`,
-            headers: {
-                authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
-            }
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });
@@ -85,6 +93,25 @@ class User {
             callBack({ status: 'error' });
         });
     }
+
+    refreshToken = () => {
+        const refreshToken = JSON.parse(localStorage.getItem('refreshToken'));
+        ConfigApi({
+            method: 'POST',
+            url: '/users/refresh-token',
+            data: { refreshToken: refreshToken },
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }).then(response => {
+            localStorage.setItem('access_token', JSON.stringify(response.accessToken));
+            localStorage.setItem('refresh_token', JSON.stringify(response.refreshToken));
+
+        }).catch(error => {
+            console.log('Error occurred while refreshing tokens: ', error.message);
+        });
+    }
+
 
 
 }

@@ -1,25 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { BottomNavigation, BottomNavigationAction, Box, Button, Drawer } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import DownloadIcon from '@mui/icons-material/Download';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
-// import CourcesIcon from '../../assets/book.png'
-// import AdmissionIcon from '../../assets/admission.png'
 import InfoIcon from '@mui/icons-material/Info';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Link, useLocation } from 'react-router-dom';
 
-
-
-
 const BottomNavbar = () => {
-
     const location = useLocation();
-
     const [openDrawer, setOpenDrawer] = useState(false);
-    const [elementsToShow, setElementsToShow] = useState(8);
+    const [elementsToShow, setElementsToShow] = useState(4);
     const [value, setValue] = useState('Home');
 
     useEffect(() => {
@@ -36,25 +29,22 @@ const BottomNavbar = () => {
         display: { xs: 'flex', md: 'none' },
         width: '350px',
         flexWrap: 'wrap',
-
-    }
+    };
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
     const bottomNavigationElements = [
-        { label: "Home", value: "Home", icon: <HomeIcon /> },
-        { label: "Notifications", value: "Notifications", icon: <NotificationsIcon /> },
-        { label: "Downloads", value: "Downloads", icon: <DownloadIcon /> },
-        { label: "Events", value: "Events", icon: <EmojiEventsIcon /> },
-        { label: "Contact", value: "Contact", icon: <ContactPageIcon /> },
-        { label: "About", value: "About", icon: <InfoIcon /> },
-        // { label: "Admission", value: "Admission", icon: <img src={AdmissionIcon} width='25px' alt='' /> },
-        // { label: "Courses", value: "Courses", icon: <img src={CourcesIcon} width='25px' alt='' /> },
+        { label: 'Home', value: 'Home', icon: <HomeIcon /> },
+        { label: 'Notifications', value: 'Notifications', icon: <NotificationsIcon /> },
+        { label: 'Downloads', value: 'Downloads', icon: <DownloadIcon /> },
+        { label: 'Events', value: 'Events', icon: <EmojiEventsIcon /> },
+        { label: 'Contact', value: 'Contact', icon: <ContactPageIcon /> },
+        { label: 'About', value: 'About', icon: <InfoIcon /> },
     ];
 
     return (
-
         <Box sx={styles}>
             <Drawer
                 open={openDrawer}
@@ -62,9 +52,9 @@ const BottomNavbar = () => {
                 variant="permanent"
                 anchor="bottom"
             >
-                {elementsToShow < bottomNavigationElements.length && (
-                    <Button onClick={() => setElementsToShow(bottomNavigationElements.length)}><ExpandMoreIcon sx={{ transform: "rotate(180deg)" }} /></Button>
-                )}
+                <Button onClick={() => setElementsToShow(elementsToShow === 4 ? bottomNavigationElements.length : 4)}>
+                    <ExpandMoreIcon sx={{ transform: `rotate(${elementsToShow === 4 ? '180deg' : '0deg'})` }} />
+                </Button>
 
                 <BottomNavigation
                     showLabels
@@ -76,8 +66,9 @@ const BottomNavbar = () => {
                         display: 'flex',
                         flexWrap: 'wrap',
                         rowGap: '5px',
-                        padding: '5px'
-                    }}>
+                        padding: '5px',
+                    }}
+                >
                     {bottomNavigationElements.slice(0, elementsToShow).map((element, index) => (
                         <BottomNavigationAction
                             key={index}
@@ -93,15 +84,19 @@ const BottomNavbar = () => {
                                 },
                             }}
                             onClick={() => {
-                                setElementsToShow();
+                                if (element.value === 'More') {
+                                    setOpenDrawer(true);
+                                } else {
+                                    setOpenDrawer(false);
+                                    setElementsToShow(4);
+                                }
                             }}
                         />
                     ))}
                 </BottomNavigation>
             </Drawer>
-        </Box >
+        </Box>
     );
-}
-
+};
 
 export default BottomNavbar;

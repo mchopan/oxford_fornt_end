@@ -8,9 +8,6 @@ class Notification {
             method: 'POST',
             url: `/notifications`,
             data: data,
-            headers: {
-                authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
-            }
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });
@@ -40,9 +37,6 @@ class Notification {
             method: 'PUT',
             url: `/notifications/${id}`,
             data: data,
-            headers: {
-                authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
-            }
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });
@@ -57,9 +51,6 @@ class Notification {
         ConfigApi({
             method: 'DELETE',
             url: `/notifications/${id}`,
-            headers: {
-                authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
-            }
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });

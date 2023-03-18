@@ -8,10 +8,13 @@ import { List, Typography } from '@mui/material';
 import Notification from '../../modules/Notification/index'
 import { motion } from "framer-motion"
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper';
+import SwiperCore, { Autoplay } from 'swiper';
 import Events from '../../modules/Events';
 import './style.css'
+
 const NdeTabs = () => {
+
+    SwiperCore.use([Autoplay]);
 
     const arrays = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
@@ -57,6 +60,15 @@ const NdeTabs = () => {
         })
     }
 
+    const handleMouseEnter = () => {
+        // Disable autoplay on hover
+        SwiperCore.use([Autoplay]).disable();
+    };
+
+    const handleMouseLeave = () => {
+        // Enable autoplay when mouse leaves
+        SwiperCore.use([Autoplay]).enable();
+    };
 
     //animation on changing the tab
     const boxAnimation = {
@@ -95,15 +107,16 @@ const NdeTabs = () => {
                                 allowTouchMove={false}
                                 autoplay={{
                                     delay: 1000,
-                                    speed: 1000,
-                                    pauseOnHover: true
+                                    disableOnInteraction: true // Disable autoplay on interaction
                                 }}
                                 modules={[Autoplay]}
                                 style={{ maxHeight: '570px' }}
+                                onMouseEnter={handleMouseEnter} // Call handleMouseEnter on mouse enter
+                                onMouseLeave={handleMouseLeave} // Call handleMouseLeave on mouse leave
                             >
 
                                 {
-                                    notifications?.map((item, index) => {
+                                    notifications?.slice(0, 10).map((item, index) => {
                                         return (
                                             <SwiperSlide>
                                                 <motion.div
@@ -131,7 +144,7 @@ const NdeTabs = () => {
                                                                 </div>
                                                             </div>
                                                         )}
-                                                        <Typography variant="overline" color="black" sx={{ display: 'flex', justifyContent: 'space-between' }} >
+                                                        <Typography variant="overline" color="black" sx={{ display: 'flex', justifyContent: 'space-between', lineHeight: '1.5' }} >
                                                             {item.notiName}
                                                             <Typography variant="caption" color="black">
                                                                 {new Date(item.createdAt).toLocaleString('en-IN', {
@@ -143,9 +156,17 @@ const NdeTabs = () => {
                                                                 })}
                                                             </Typography>
                                                         </Typography>
-                                                        <Typography variant="body1" color="blue" >
+                                                        <Typography
+                                                            variant="body1"
+                                                            color="blue"
+                                                            sx={{
+                                                                whiteSpace: 'nowrap',
+                                                                overflow: 'hidden',
+                                                                textOverflow: 'ellipsis'
+                                                            }}>
                                                             {item.notiDesc}
                                                         </Typography>
+
                                                     </List>
                                                 </motion.div>
                                             </SwiperSlide>
@@ -166,11 +187,12 @@ const NdeTabs = () => {
                                 allowTouchMove={false}
                                 autoplay={{
                                     delay: 1000,
-                                    speed: 1000,
-                                    pauseOnHover: true
+                                    disableOnInteraction: true // Disable autoplay on interaction
                                 }}
                                 modules={[Autoplay]}
                                 style={{ maxHeight: '570px' }}
+                                onMouseEnter={handleMouseEnter} // Call handleMouseEnter on mouse enter
+                                onMouseLeave={handleMouseLeave} // Call handleMouseLeave on mouse leave
                             >
                                 {
                                     arrays.map((item, index) => {
@@ -229,11 +251,12 @@ const NdeTabs = () => {
                                 allowTouchMove={false}
                                 autoplay={{
                                     delay: 1000,
-                                    speed: 1000,
-                                    pauseOnHover: true,
+                                    disableOnInteraction: true // Disable autoplay on interaction
                                 }}
                                 modules={[Autoplay]}
-                                style={{ maxHeight: '570px', }}
+                                style={{ maxHeight: '570px' }}
+                                onMouseEnter={handleMouseEnter} // Call handleMouseEnter on mouse enter
+                                onMouseLeave={handleMouseLeave} // Call handleMouseLeave on mouse leave
                             >
                                 {
                                     events.map((item, index) => {
@@ -276,15 +299,15 @@ const NdeTabs = () => {
                                                                 })}
                                                             </Typography>
                                                         </Typography>
-                                                        <Typography variant="body1" color="blue" >
-                                                            {item.eventDesc}<br />
+                                                        <Typography variant="body1" color="black" >
                                                             {new Date(item.eventTime).toLocaleString('en-IN', {
                                                                 day: 'numeric',
                                                                 month: 'short',
                                                                 year: 'numeric',
                                                                 hour: 'numeric',
                                                                 minute: 'numeric',
-                                                            })}
+                                                            })}<br />
+                                                            {item.eventDesc}
                                                         </Typography>
                                                     </List>
                                                 </motion.div>

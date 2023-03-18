@@ -118,6 +118,7 @@ const Index = () => {
                         justifyContent: "space-evenly",
                         backgroundColor: "#f3f3b6"
                     }}>
+                        <ToastContainer />
                         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                             <Avatar
                                 sx={{ width: '60px', height: '60px' }}

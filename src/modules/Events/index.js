@@ -6,9 +6,6 @@ class Events {
             method: 'POST',
             url: `/events`,
             data: data,
-            headers: {
-                authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
-            }
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });
@@ -38,9 +35,6 @@ class Events {
             method: 'PUT',
             url: `/events/${id}`,
             data: data,
-            headers: {
-                authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
-            }
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });
@@ -55,9 +49,6 @@ class Events {
         ConfigApi({
             method: 'DELETE',
             url: `/events/${id}`,
-            headers: {
-                authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
-            }
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });

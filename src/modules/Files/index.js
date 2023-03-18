@@ -7,9 +7,6 @@ class Files {
             method: "POST",
             url: "files",
             data: data,
-            headers: {
-                authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
-            }
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });
@@ -24,9 +21,6 @@ class Files {
         ConfigApi({
             method: "GET",
             url: "files",
-            headers: {
-                authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
-            }
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });
@@ -41,9 +35,6 @@ class Files {
         ConfigApi({
             method: "DELETE",
             url: `files/${id}`,
-            headers: {
-                authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
-            }
         }).then(response => {
             if (response.data) {
                 callBack({ status: 'success', data: response.data });
