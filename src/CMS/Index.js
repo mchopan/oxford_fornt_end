@@ -94,11 +94,11 @@ const Index = () => {
     }
 
     const HandleLogout = () => {
-        localStorage.removeItem('token')
+        localStorage.removeItem('accessToken')
+        localStorage.removeItem('refreshToken')
         localStorage.removeItem('user')
         navigate('/Home')
         Toast({ type: 'success', message: `You have been successfully logged out. Have a great day!` });
-
     }
 
     return (
@@ -116,9 +116,8 @@ const Index = () => {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "space-evenly",
-                        backgroundColor: "#f3f3b6"
+                        backgroundColor: "#2188ff"
                     }}>
-                        <ToastContainer />
                         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                             <Avatar
                                 sx={{ width: '60px', height: '60px' }}

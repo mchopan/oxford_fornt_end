@@ -5,13 +5,13 @@
     width: 100vw;
     height:100vh;
     margin: 0px;
-    background-color: rgb(136, 224, 240);
+    background-color: #28a745;
 }
 
 .main-container {
     width: calc(100% - 25px); /* subtract 20px for left and right margin */
     height: calc(100% - 25px); /* subtract 20px for top and bottom margin */
-    background: #a72424;
+    background: #000000;
     display: flex;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
@@ -21,16 +21,14 @@
 .navigation{
     width: 20%;
     height: 100%;
-    background-color: rgb(165, 243, 217);
+    background-color: rgb(0, 255, 170);
 }
 
 .container{
     height: 100%;
     width: 80%;
-    background-color: rgb(255, 255, 255);
+    background-color: #ffffff;
     display: flex;
-    /* justify-content: center; */
-    /* align-items: center; */
 }
 
 .table-panel {

@@ -93,8 +93,6 @@ const Navbar = () => {
                         isMatch ? (
                             <>
                                 <img src={logo1} alt="logo" width='360px' />
-                                {/* <img src={textLogoSm} alt="textlogo" width="100%" /> */}
-                                {/* <DrawerComp /> */}
                             </>
                         ) : (
                             <>
@@ -104,7 +102,7 @@ const Navbar = () => {
                                 <Tabs sx={{ marginLeft: "auto", display: 'flex', alignItems: 'center' }} value={value}
                                     textColor='inherit'
                                     onChange={handleTabs}
-                                    indicatorColor="secondary"
+                                    indicatorColor="primary"
                                 >
                                     {
                                         pages.map((page, index) => (

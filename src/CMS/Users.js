@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 import Toast from '../components/Toast/Toast'
-import { ToastContainer } from 'react-toastify';
 import User from '../modules/User/User';
 
 
@@ -194,7 +193,6 @@ export default function UsersHandler() {
     const getRowId = (row) => row._id;
     return (
         <Box sx={{ height: 520, width: '100%' }}>
-            <ToastContainer />
             <Box sx={{ marginBottom: "10px", width: '100%', display: 'flex', justifyContent: 'space-around' }}>
                 <Button variant="outlined" onClick={handleClickOpen}>
                     Add New User

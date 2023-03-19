@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, TextField } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 import Toast from '../components/Toast/Toast'
-import { ToastContainer } from 'react-toastify';
 import moment from 'moment';
 
 
@@ -35,6 +34,7 @@ export default function NotifyHandler() {
       editable: true,
       valueFormatter: (params) =>
         new Date(params.value).toLocaleString('en-IN', {
+          timeZone: 'Asia/Kolkata',
           day: 'numeric',
           month: 'short',
           year: 'numeric',
@@ -179,7 +179,6 @@ export default function NotifyHandler() {
   const getRowId = (row) => row._id;
   return (
     <Box sx={{ height: 520, width: '100%' }}>
-      <ToastContainer />
       <Box sx={{ marginBottom: "10px", width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
         <Button variant="outlined" onClick={handleClickOpen}>
           Add New Data
@@ -238,7 +237,11 @@ export default function NotifyHandler() {
             type="datetime-local"
             fullWidth
             variant="standard"
-            onChange={(e) => setNewData({ ...newData, eventTime: e.target.value })}
+            onChange={(e) => {
+              const selectedDate = new Date(e.target.value);
+              const isoDate = selectedDate.toISOString();
+              setNewData({ ...newData, eventTime: isoDate });
+            }}
             InputLabelProps={{ shrink: true }}
           />
         </DialogContent>

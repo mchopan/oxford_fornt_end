@@ -27,13 +27,15 @@ export const Downloads = () => {
     };
 
 
-    const styles = {
+    const container_styles = {
         display: 'flex',
         justifyContent: 'center',
         flexWrap: 'wrap',
         gap: '10px',
         margin: '10px',
-        padding: '10px'
+        padding: '10px',
+        height: 550,
+        overflowY: "scroll",
     }
 
 
@@ -45,7 +47,10 @@ export const Downloads = () => {
             animate="center"
             exit="exit"
         >
-            <Box sx={styles}>
+            <Typography sx={{ borderBottom: '2px solid black' }} variant="h5" textAlign="center" color="white" backgroundColor="gray">
+                Downloads
+            </Typography>
+            <Box sx={container_styles}>
                 {
                     [1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
                         <Card sx={{

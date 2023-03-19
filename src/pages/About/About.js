@@ -75,8 +75,8 @@ const About = () => {
             exit="exit"
 
         >
-            <Typography variant="h2" textAlign="center" color="white" backgroundColor="gray">
-                <AcUnitIcon /><AcUnitIcon />About Us<AcUnitIcon /><AcUnitIcon />
+            <Typography sx={{ borderBottom: '2px solid black' }} variant="h5" textAlign="center" color="white" backgroundColor="gray">
+                About Us
             </Typography>
             <Box sx={{ margin: { xs: '0px 20px', md: '0px 50px' } }}>
                 <Box sx={{ padding: '5px' }}>

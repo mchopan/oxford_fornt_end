@@ -2,7 +2,6 @@ import { Button, Card, CardActionArea, CardActions, CardMedia } from '@mui/mater
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react'
 import Toast from '../components/Toast/Toast'
-import { ToastContainer } from 'react-toastify';
 import FilesApi from '../modules/Files/index'
 
 const Files = () => {
@@ -75,7 +74,6 @@ const Files = () => {
 
     return (
         <>
-            <ToastContainer />
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <input
                     type="file"

@@ -4,40 +4,67 @@ import Typography from '@mui/material/Typography'
 import { motion } from 'framer-motion'
 import './styles.css'
 
-
-
-
+import EventsApi from '../../modules/Events/index'
 
 
 const Events = () => {
-    const [days, setDays] = useState(30);
-    const [hours, setHours] = useState(12);
-    const [minutes, setMinutes] = useState(60);
+
+    const [events, setEvents] = useState([]);
+    const [days, setDays] = useState();
+    const [hours, setHours] = useState();
+    const [minutes, setMinutes] = useState();
+    const [seconds, setSeconds] = useState();
+
+    const getEvents = () => {
+        EventsApi.getAllEvents(response => {
+            if (response.status === 'success') {
+                console.log(response.data.events, "response")
+                setEvents(response.data.events)
+            }
+            else {
+                console.log(response.error)
+            }
+        })
+    }
+
 
 
     useEffect(() => {
+        getEvents()
+    }, [])
 
-        const interval = setInterval(() => {
-            const now = new Date();
-            const endTime = new Date();
+    useEffect(() => {
+        if (events.length > 0) {
+            startTimer();
+        }
+    }, [events]);
 
-            // Calculate time difference
-            const diff = endTime - now;
+    let Interval;
 
-            // Calculate days, hours, and minutes
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = now.getHours();
-            const minutes = now.getMinutes();
+    const startTimer = () => {
+        const eventTimes = events[0]?.eventTime;
+        const countDownDate = new Date(eventTimes).getTime();
 
-            // Update state
+        Interval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
             setDays(days);
             setHours(hours);
             setMinutes(minutes);
-        }, 60000); // Update every minute
+            setSeconds(seconds);
 
-        // Clear interval on unmount
-        return () => clearInterval(interval);
-    }, []);
+            if (distance < 0) {
+                clearInterval(Interval);
+            }
+        }, 1000);
+    };
+
 
     const mainContainer = {
         display: 'flex',
@@ -75,6 +102,9 @@ const Events = () => {
             animate="center"
             exit="exit"
         >
+            <Typography sx={{ borderBottom: '2px solid black' }} variant="h5" textAlign="center" color="white" backgroundColor="gray">
+                Events
+            </Typography>
             <Box sx={mainContainer}>
                 <Box sx={{
                     width: { xs: '100%', md: '50%' },
@@ -82,46 +112,48 @@ const Events = () => {
                     flexDirection: 'column',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    gap: '40px'
+                    gap: '10px'
                 }}>
-                    <Typography sx={{ fontSize: { xs: '40px', md: '60px' } }} variant="h3">
+                    <Typography sx={{ fontSize: { xs: '30px', md: '60px' } }} >
                         UP COMING EVENT
                     </Typography>
                     <Box sx={{ display: 'flex', gap: '8px', }}>
                         <span className='day'>
-                            <Typography sx={{ textAlign: 'center', fontSize: { xs: '40px', md: '100px' } }} variant="h1">
+                            <Typography sx={{ textAlign: 'center', fontSize: { xs: '30px', md: '100px' } }}>
                                 {days}
                                 <Typography variant="h6" textAlign={'center'}>
                                     DAYS
                                 </Typography>
                             </Typography>
                         </span>
-                        <Typography variant="h1">
-                            :
-                        </Typography>
+
                         <span className='hour '>
-                            <Typography sx={{ textAlign: 'center', fontSize: { xs: '40px', md: '100px' } }} variant="h1" >
+                            <Typography sx={{ textAlign: 'center', fontSize: { xs: '30px', md: '100px' } }} >
                                 {hours}
                                 <Typography variant="h6" textAlign={'center'}>
                                     HOURS
                                 </Typography>
                             </Typography>
                         </span>
-                        <Typography variant="h1">
-                            :
-                        </Typography>
+
                         <span className='min'>
-                            <Typography sx={{ textAlign: 'center', fontSize: { xs: '40px', md: '100px' } }} variant="h1">
+                            <Typography sx={{ textAlign: 'center', fontSize: { xs: '30px', md: '100px' } }} variant="h1">
                                 {minutes}
                                 <Typography variant="h6" textAlign={'center'}>
-                                    MINUTES
+                                    MINS
+                                </Typography>
+                            </Typography>
+                        </span>
+
+                        <span className='min'>
+                            <Typography sx={{ textAlign: 'center', fontSize: { xs: '30px', md: '100px' } }} variant="h1">
+                                {seconds}
+                                <Typography variant="h6" textAlign={'center'}>
+                                    SECS
                                 </Typography>
                             </Typography>
                         </span>
                     </Box>
-                    <Typography sx={{ fontSize: { xs: '40px', md: '60px' } }} variant="h2" >
-                        Title Of The Event
-                    </Typography>
                 </Box >
                 <br />
 
@@ -132,9 +164,6 @@ const Events = () => {
                     alignItems: 'center',
                     gap: '5px',
                 }}>
-                    <Typography variant="h3">
-                        OTHER EVENTS
-                    </Typography>
                     <Box sx={{
 
                         overflowY: 'scroll',
@@ -142,16 +171,21 @@ const Events = () => {
                     }}>
 
                         {
-                            [1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => (
-                                <Box sx={{ display: 'flex', gap: '5px', margin: '5px', padding: '5px' }}>
+                            events.map((item, index) => (
+                                <Box key={item._id} sx={{ display: 'flex', gap: '5px', margin: '5px', padding: '5px' }}>
                                     <Typography variant="h5" color="initial" textAlign='center' sx={{
                                         backgroundColor: '#b8f0ff',
                                         padding: '10px',
                                         width: '100px',
                                         boxShadow: 'rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px'
                                     }}>
-                                        15<br />
-                                        MAY
+                                        {new Date(item.eventTime).toLocaleString('en-IN', {
+                                            day: 'numeric',
+                                        })}
+                                        <br />
+                                        {new Date(item.eventTime).toLocaleString('en-IN', {
+                                            month: 'short',
+                                        })}
                                     </Typography>
                                     <Typography variant="h6" color="initial" sx={{
                                         backgroundColor: '#f3f3f3',
@@ -159,9 +193,9 @@ const Events = () => {
                                         width: { xs: '250px', md: '400px' },
                                         boxShadow: 'rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px'
                                     }} >
-                                        Title
+                                        {item.eventName}
                                         <Typography>
-                                            Lorim anna nanu e naje wd
+                                            {item.eventDesc}
                                         </Typography>
                                     </Typography>
                                 </Box>
