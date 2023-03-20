@@ -14,6 +14,7 @@ const Events = () => {
     const [hours, setHours] = useState();
     const [minutes, setMinutes] = useState();
     const [seconds, setSeconds] = useState();
+    const [eventEnded, setEventEnded] = useState(false);
 
     const getEvents = () => {
         EventsApi.getAllEvents(response => {
@@ -28,7 +29,6 @@ const Events = () => {
     }
 
 
-
     useEffect(() => {
         getEvents()
     }, [])
@@ -38,6 +38,20 @@ const Events = () => {
             startTimer();
         }
     }, [events]);
+
+    useEffect(() => {
+        if (eventEnded) {
+            EventsApi.deleteEventById(events[0]._id, response => {
+                if (response.status === 'success') {
+                    console.log('Event deleted successfully');
+                    getEvents();
+                } else {
+                    console.log(response.error);
+                }
+            });
+        }
+    }, [eventEnded]);
+
 
     let Interval;
 
@@ -61,6 +75,7 @@ const Events = () => {
 
             if (distance < 0) {
                 clearInterval(Interval);
+                setEventEnded(true);
             }
         }, 1000);
     };
@@ -175,7 +190,7 @@ const Events = () => {
                                 <Box key={item._id} sx={{ display: 'flex', gap: '5px', margin: '5px', padding: '5px' }}>
                                     <Typography variant="h5" color="initial" textAlign='center' sx={{
                                         backgroundColor: '#b8f0ff',
-                                        padding: '10px',
+                                        padding: '8px',
                                         width: '100px',
                                         boxShadow: 'rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px'
                                     }}>

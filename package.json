@@ -20,7 +20,8 @@
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.1",
-    "swiper": "^8.4.6"
+    "swiper": "^8.4.6",
+    "web-push": "^3.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
