@@ -42,19 +42,6 @@ const Slider = () => {
 
     // New Code
 
-    // React.useEffect(() => {
-    //     const runAutochangeTO = () => {
-    //         changeTO.current = setTimeout(() => {
-    //             changeSlides(1);
-    //             runAutochangeTO();
-    //         }, AUTOCHANGE_TIME);
-    //     };
-    //     runAutochangeTO();
-    //     setTimeout(() => {
-    //         setActiveSlide(0);
-    //         setSliderReady(true);
-    //     }, 0);
-    // }, []);
 
 
 

@@ -62,8 +62,6 @@ const Testimonial = () => {
         height: '98vh',
         margin: 'auto',
         padding: '10px',
-        // borderRadius: '10px',
-        // boxShadow: 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px',
     }
 
 
@@ -104,8 +102,7 @@ const Testimonial = () => {
                     autoplay={{
                         delay: 7000
                     }}
-                    navigation={true}
-                    modules={[Navigation, Pagination, Autoplay, EffectCreative]}
+                    modules={[Pagination, Autoplay, EffectCreative]}
                     className="mySwiper"
                     style={{ padding: '0px', height: '85vh' }}
                 >
@@ -115,8 +112,8 @@ const Testimonial = () => {
                                 <Grid xs={12} item
                                     sx={{
                                         // backgroundColor: 'rgba(225,225,225,)',
-                                        padding: '20px',
-                                        margin: '30px 30px',
+                                        padding: '10px',
+                                        margin: '20px 20px',
                                         height: 'calc(98vh - 150px)'
                                     }}>
 

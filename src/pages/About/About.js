@@ -2,7 +2,6 @@ import { Box } from '@mui/system'
 import React from 'react'
 import Typography from '@mui/material/Typography'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
-import AcUnitIcon from '@mui/icons-material/AcUnit';
 import { motion } from 'framer-motion'
 const About = () => {
 

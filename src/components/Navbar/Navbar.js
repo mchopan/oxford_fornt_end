@@ -3,7 +3,7 @@ import {
     AppBar, Toolbar, Button,
     Box, Tabs, Tab, useMediaQuery,
     useTheme, Dialog, DialogTitle,
-    DialogContent, TextField, DialogActions, Avatar,
+    DialogContent, TextField, DialogActions,
 } from '@mui/material'
 
 import logo1 from '../../assets/Group 1.svg'
@@ -28,7 +28,7 @@ const Navbar = () => {
         password: '',
     });
     const pages = useMemo(() => {
-        const basePages = ["Home", "Notifications", "Downloads", "Events", "Contact", "About"];
+        const basePages = ["Home", "Notifications", "Downloads", "Events", "Gallery", "About"];
         return token ? [...basePages, "Admin"] : basePages;
     }, [token]);
 

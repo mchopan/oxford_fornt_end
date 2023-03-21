@@ -4,7 +4,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import DownloadIcon from '@mui/icons-material/Download';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import ContactPageIcon from '@mui/icons-material/ContactPage';
+import CollectionsIcon from '@mui/icons-material/Collections';
 import InfoIcon from '@mui/icons-material/Info';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Link, useLocation } from 'react-router-dom';
@@ -38,9 +38,9 @@ const BottomNavbar = () => {
     const bottomNavigationElements = [
         { label: 'Home', value: 'Home', icon: <HomeIcon /> },
         { label: 'Notifications', value: 'Notifications', icon: <NotificationsIcon /> },
-        { label: 'Downloads', value: 'Downloads', icon: <DownloadIcon /> },
+        { label: 'Gallery', value: 'Gallery', icon: <CollectionsIcon /> },
         { label: 'Events', value: 'Events', icon: <EmojiEventsIcon /> },
-        { label: 'Contact', value: 'Contact', icon: <ContactPageIcon /> },
+        { label: 'Downloads', value: 'Downloads', icon: <DownloadIcon /> },
         { label: 'About', value: 'About', icon: <InfoIcon /> },
     ];
 

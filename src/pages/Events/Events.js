@@ -37,6 +37,7 @@ const Events = () => {
         if (events.length > 0) {
             startTimer();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [events]);
 
     useEffect(() => {
@@ -50,6 +51,7 @@ const Events = () => {
                 }
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [eventEnded]);
 
 

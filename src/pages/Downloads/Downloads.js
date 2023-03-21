@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Button, Card, CardActions, CardContent, Typography, CardHeader, Avatar, IconButton } from '@mui/material';
+import { Button, Card, CardActions, CardContent, Typography, CardHeader } from '@mui/material';
 import { Box } from '@mui/system';
 
 export const Downloads = () => {
