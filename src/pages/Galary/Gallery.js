@@ -54,7 +54,7 @@ export default function MasonryImageList() {
           {
             itemData.length > 0 ? (
               <>
-                <ImageList key={itemData._id} variant="masonry" cols={3} gap={8}>
+                <ImageList variant="masonry" cols={3} gap={8}>
                   {itemData.length &&
                     itemData?.map((item) => (
                       <ImageListItem key={item._id}>
