@@ -55,7 +55,7 @@ export default function MasonryImageList() {
                 <ImageList variant="masonry" cols={3} gap={8}>
                   {itemData.length &&
                     itemData?.map((item) => (
-                      <ImageListItem key={item.img}>
+                      <ImageListItem key={item._id}>
                         <img
                           src={`${item.filePath}?w=248&fit=crop&auto=format`}
                           srcSet={`${item.filePath}?w=248&fit=crop&auto=format&dpr=2 2x`}
