@@ -46,19 +46,19 @@ export default function MasonryImageList() {
   }
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "center", width: { xs: "95" }, margin: "10px" }}>
+    <Box sx={{ display: "flex", justifyContent: "center", margin: "10px" }}>
       {
         loader ? <Box sx={loader_styles}><Loader /></Box> : <Box sx={{ width: { xs: 350, md: 1000 }, height: 600, overflowY: "scroll" }}>
           {
             itemData?.length > 0 ? (
               <>
-                <ImageList variant="masonry" cols={3} gap={8}>
+                <ImageList cols={3} gap={8}>
                   {itemData.length &&
                     itemData?.map((item) => (
                       <ImageListItem key={item._id}>
                         <img
-                          src={item.filePath}
-                          srcSet={item.filePath}
+                          src={`${item.filePath}?w=248&fit=crop&auto=format`}
+                          srcSet={`${item.filePath}?w=248&fit=crop&auto=format&dpr=2 2x`}
                           alt={item.fileName}
                           loading="lazy"
                           onClick={() => handleImageClick(item)}
