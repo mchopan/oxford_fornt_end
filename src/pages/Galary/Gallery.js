@@ -45,14 +45,12 @@ export default function MasonryImageList() {
 
   }
 
-  console.log(itemData[0].filePath)
-
   return (
     <Box sx={{ display: "flex", justifyContent: "center", width: { xs: "95" }, margin: "10px" }}>
       {
         loader ? <Box sx={loader_styles}><Loader /></Box> : <Box sx={{ width: { xs: 350, md: 1000 }, height: 600, overflowY: "scroll" }}>
           {
-            itemData.length > 0 ? (
+            itemData?.length > 0 ? (
               <>
                 <ImageList variant="masonry" cols={3} gap={8}>
                   {itemData.length &&
