@@ -52,20 +52,22 @@ export default function MasonryImageList() {
           {
             itemData?.length > 0 ? (
               <>
-                <ImageList cols={3} gap={8}>
+                <ImageList variant="masonry" cols={3} gap={8}>
                   {itemData.length &&
-                    itemData?.map((item) => (
-                      <ImageListItem key={item._id}>
-                        <img
-                          src={`${item.filePath}?w=248&fit=crop&auto=format`}
-                          srcSet={`${item.filePath}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                          alt={item.fileName}
-                          loading="lazy"
-                          onClick={() => handleImageClick(item)}
-                          style={{ cursor: "pointer" }}
-                        />
-                      </ImageListItem>
-                    ))}
+                    itemData?.map((item) => {
+                      return (
+                        <ImageListItem key={item._id}>
+                          <img
+                            src={`${item.filePath}?w=248&fit=crop&auto=format`}
+                            srcSet={`${item.filePath}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                            alt={item.fileName}
+                            loading="lazy"
+                            onClick={() => handleImageClick(item)}
+                            style={{ cursor: "pointer" }}
+                          />
+                        </ImageListItem>
+                      )
+                    })}
                 </ImageList>
                 <Modal sx={{ display: 'flex', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }} open={selectedImage !== null} onClose={handleCloseModal}>
                   <img
