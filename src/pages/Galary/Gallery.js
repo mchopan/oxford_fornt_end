@@ -6,7 +6,7 @@ import Modal from "@mui/material/Modal";
 import Files from "../../modules/Files";
 import Loader from '../../assets/Loader/loader'
 import NoResult from '../../assets/Illustrations/Empty Box.svg'
-
+import { image } from '@mui/material/'
 
 export default function MasonryImageList() {
   const [itemData, setItemData] = useState([]);
@@ -57,8 +57,8 @@ export default function MasonryImageList() {
                     itemData?.map((item) => (
                       <ImageListItem key={item._id}>
                         <img
-                          src={`${item.filePath}?w=248&fit=crop&auto=format`}
-                          srcSet={`${item.filePath}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                          src={item.filePath}
+                          srcSet={item.filePath}
                           alt={item.fileName}
                           loading="lazy"
                           onClick={() => handleImageClick(item)}
