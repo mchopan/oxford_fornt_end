@@ -1,12 +1,28 @@
 
 import { Button, TextField, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import React from 'react'
+import React, { useRef } from 'react'
 import SendIcon from '@mui/icons-material/Send';
 import './Contact.css'
 import { EmailSharp, LocationCity, PhoneAndroidOutlined } from '@mui/icons-material';
+import emailjs from '@emailjs/browser';
+import Toast from '../Toast/Toast'
 
 const Contact = () => {
+
+    const form = useRef();
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        emailjs.sendForm('service_86x9hym', 'template_6fd9iyl', form.current, 'fT8jnjGsVhq8LzRP1')
+            .then((result) => {
+                Toast({ type: 'success', message: `Message Send Successfully!` });
+            }, (error) => {
+                Toast({ type: 'error', message: `Error, Message Not Send` });
+            });
+    };
+
 
     const formStyle = {
         display: 'flex',
@@ -45,6 +61,9 @@ const Contact = () => {
         }
     }
 
+    // Logic
+
+
 
     return (
         <>
@@ -52,34 +71,39 @@ const Contact = () => {
                 Contact us
             </Typography>
             <Box sx={mainContainer}>
-                <Box sx={formStyle}>
-                    <TextField
-                        label="Name"
-                        id='name'
-                        variant='outlined'
-                    />
-                    <TextField
-                        label="Email"
-                        type='email'
-                        id='name'
-                        variant='outlined'
-                    />
+                <form ref={form} onSubmit={sendEmail}>
+                    <Box sx={formStyle}>
+                        <TextField
+                            label="Name"
+                            id='name'
+                            type='text'
+                            name="user_name"
+                            variant='outlined'
+                        />
+                        <TextField
+                            label="Email"
+                            type='email'
+                            id='name'
+                            name="user_email"
+                            variant='outlined'
+                        />
 
-                    <TextField
-                        id="standard-multiline-static"
-                        label="Message"
-                        multiline
-                        rows={4}
-                        // defaultValue="Defalt Value"
-                        variant='outlined'
-                    />
-                    <Button variant='contained' className="send-button">
-                        <span className="send-text" style={{ fontWeight: '500' }}>Send</span>
-                        <span className="send-icon">
-                            <SendIcon />
-                        </span>
-                    </Button>
-                </Box>
+                        <TextField
+                            id="standard-multiline-static"
+                            label="Message"
+                            multiline
+                            rows={4}
+                            name="message"
+                            variant='outlined'
+                        />
+                        <Button type="submit" variant='contained' className="send-button">
+                            <span className="send-text" style={{ fontWeight: '500' }}>Send</span>
+                            <span className="send-icon">
+                                <SendIcon />
+                            </span>
+                        </Button>
+                    </Box>
+                </form>
                 <Box sx={socialStyles}>
                     <Typography sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', gap: '15px', fontSize: '16px' }} variant="h6" color="initial">
                         <LocationCity />

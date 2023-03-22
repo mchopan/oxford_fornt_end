@@ -6,7 +6,6 @@ import Modal from "@mui/material/Modal";
 import Files from "../../modules/Files";
 import Loader from '../../assets/Loader/loader'
 import NoResult from '../../assets/Illustrations/Empty Box.svg'
-import { image } from '@mui/material/'
 
 export default function MasonryImageList() {
   const [itemData, setItemData] = useState([]);

@@ -11,7 +11,6 @@ import Users from './Users'
 import './styles.css'
 import { Avatar, Typography, Tooltip } from '@mui/material';
 import { motion } from 'framer-motion'
-import { ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import Toast from '../components/Toast/Toast';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -108,7 +107,7 @@ const Index = () => {
             animate="center"
             exit="exit"
             className="master-container" >
-            <ToastContainer />
+
             <Box className="main-container">
                 <Box className="navigation">
                     <Box sx={{
