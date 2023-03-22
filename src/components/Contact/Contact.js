@@ -15,12 +15,13 @@ const Contact = () => {
     const sendEmail = (e) => {
         e.preventDefault();
 
-        emailjs.sendForm('service_86x9hym', 'template_6fd9iyl', form.current, 'fT8jnjGsVhq8LzRP1')
+        emailjs.sendForm('service_86x9hym', 'template_6fd9iyl', form.current, 'fT8jnjGsVhq8LzRP1',)
             .then((result) => {
                 Toast({ type: 'success', message: `Message Send Successfully!` });
             }, (error) => {
                 Toast({ type: 'error', message: `Error, Message Not Send` });
             });
+        form.current.reset();
     };
 
 
