@@ -75,6 +75,7 @@ const Contact = () => {
                 <form ref={form} onSubmit={sendEmail}>
                     <Box sx={formStyle}>
                         <TextField
+                            required
                             label="Name"
                             id='name'
                             type='text'
@@ -82,6 +83,7 @@ const Contact = () => {
                             variant='outlined'
                         />
                         <TextField
+                            required
                             label="Email"
                             type='email'
                             id='name'
@@ -90,6 +92,7 @@ const Contact = () => {
                         />
 
                         <TextField
+                            required
                             id="standard-multiline-static"
                             label="Message"
                             multiline

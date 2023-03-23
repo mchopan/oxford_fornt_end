@@ -11,7 +11,7 @@ import './Testimonial.css'
 import "swiper/css/effect-creative";
 
 // import required modules
-import { Pagination, Navigation, Autoplay, EffectCreative } from "swiper";
+import { Pagination, Autoplay, EffectCreative } from "swiper";
 
 
 const cardData = [

@@ -50,11 +50,9 @@ input[type=file]::file-selector-button {
     margin-right: 20px;
     border: none;
     background: #084cdf;
-    padding: 10px 20px;
+    padding: 10px ;
     border-radius: 5px;
     color: #fff;
-    /* font-size: 16px; */
-    /* font-weight: 500; */
     cursor: pointer;
     transition: background .2s ease-in-out;
   }

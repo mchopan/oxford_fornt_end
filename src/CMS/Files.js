@@ -74,7 +74,7 @@ const Files = () => {
 
     return (
         <>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <Box sx={{ display: 'flex', marginTop: "-10px", padding: "5px", justifyContent: 'flex-end' }}>
                 <input
                     type="file"
                     accept="image/*"
@@ -89,11 +89,11 @@ const Files = () => {
                     Upload Image
                 </Button>
             </Box>
-            <Box sx={{ display: 'flex', height: 530, flexWrap: 'wrap', gap: '10px' }}>
+            <Box sx={{ display: 'flex', height: 530, overflowY: "scroll", flexWrap: 'wrap', gap: '10px' }}>
                 {
                     images?.map((items, index) => {
                         return (
-                            <Card sx={{ width: 180, height: 250 }}>
+                            <Card sx={{ width: 190, height: 250 }}>
                                 <CardActionArea sx={{ position: 'relative', height: 'calc(100% - 48px)' }}>
                                     <CardMedia
                                         component="img"

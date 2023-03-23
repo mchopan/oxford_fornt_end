@@ -9,6 +9,7 @@ import Index from './CMS/Index.js';
 import ProtectedRoutes from './utils/ProtectedRoutes';
 import Layout from './utils/Layout.js';
 import Gallery from './pages/Galary/Gallery.js';
+import ScrollToTopButton from './components/ScrollToTopButton/ScrollToTopButton.js';
 
 function App() {
   const location = useLocation();
@@ -29,6 +30,7 @@ function App() {
             <Route path='/Admin' element={<Index />} />
           </Route>
         </Routes>
+        <ScrollToTopButton />
       </AnimatePresence>
     </>
   );

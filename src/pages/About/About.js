@@ -3,6 +3,8 @@ import React from 'react'
 import Typography from '@mui/material/Typography'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { motion } from 'framer-motion'
+
+
 const About = () => {
 
     // Courses
