@@ -165,7 +165,7 @@ export default function NotifyHandler() {
   const getRowId = (row) => row._id;
   return (
     <Box sx={{ height: 520, width: '100%' }}>
-      <Box sx={{ marginBottom: "10px", width: '100%', display: 'flex', justifyContent: 'space-around' }}>
+      <Box sx={{ marginBottom: "10px", width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
         <Button variant="outlined" onClick={handleClickOpen}>
           Add New Data
         </Button>

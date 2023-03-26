@@ -113,7 +113,19 @@ class User {
     }
 
 
-
+    findUsername = (username, callBack) => {
+        ConfigApi({
+            method: 'GET',
+            url: `/users/username/${username}`,
+        }).then(response => {
+            if (response.data) {
+                callBack({ status: 'success', data: response.data });
+            }
+        }).catch(error => {
+            console.log('Error occurred while finding user: ', error.message);
+            callBack({ status: 'error' });
+        });
+    }
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export

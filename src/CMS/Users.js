@@ -2,11 +2,11 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import { useState, useEffect } from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, InputLabel, MenuItem, Select, TextField } from '@mui/material';
-import { Delete } from '@mui/icons-material';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, Grid, IconButton, Input, InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { Delete, Visibility, VisibilityOff } from '@mui/icons-material';
 import Toast from '../components/Toast/Toast'
 import User from '../modules/User/User';
-
+import { validateEmail, validatePassword } from '../utils/utils';
 
 
 
@@ -108,11 +108,12 @@ export default function UsersHandler() {
         }
     ];
 
+    const [showPassword, setShowPassword] = useState(false);
     const [usersData, setUsersData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
     const [newData, setNewData] = useState({
-        email: "", //firstName, lastName, lastName, email, phoneNumber, userType, password
+        email: "",
         firstName: "",
         lastName: "",
         phoneNumber: "",
@@ -120,6 +121,44 @@ export default function UsersHandler() {
         userType: "",
         password: ""
     });
+    const [error, setError] = useState({
+        emailError: false,
+        passwordError: false,
+        userNameError: false,
+    });
+
+    const handleEmailChange = (e) => {
+        const email = e.target.value;
+        setNewData({ ...newData, email: email });
+        setError({ ...error, emailError: !validateEmail(email) });
+    };
+
+    const handlePasswordChange = (e) => {
+        const password = e.target.value;
+        setNewData({ ...newData, password: password });
+        setError({ ...error, passwordError: !validatePassword(password) });
+    };
+
+    const handleUserNameChange = (e) => {
+        const userName = e.target.value;
+        setNewData({ ...newData, userName: userName });
+        User.findUsername(userName, response => {
+            if (response.status === 'success') {
+                setError({ ...error, userNameError: true });
+            } else {
+                setError({ ...error, userNameError: false });
+            }
+        })
+    };
+
+
+    const handleClickShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
 
     useEffect(() => {
         getUsers();
@@ -250,12 +289,15 @@ export default function UsersHandler() {
                             <TextField
                                 autoFocus
                                 margin="dense"
-                                id="userName"
+                                id="username"
                                 label="Username"
                                 type="text"
                                 fullWidth
                                 variant="standard"
-                                onChange={(e) => setNewData({ ...newData, userName: e.target.value })}
+                                value={newData.userName}
+                                onChange={handleUserNameChange}
+                                error={Boolean(error.userNameError)}
+                                helperText={error.userNameError && "username already taken"}
                             />
                         </Grid>
                         <Grid item xs={6}>
@@ -267,7 +309,10 @@ export default function UsersHandler() {
                                 type="email"
                                 fullWidth
                                 variant="standard"
-                                onChange={(e) => setNewData({ ...newData, email: e.target.value })}
+                                value={newData.email}
+                                onChange={handleEmailChange}
+                                error={Boolean(error.emailError)}
+                                helperText={error.emailError && "enter a valied email address"}
                             />
                         </Grid>
                         <Grid item xs={6}>
@@ -283,16 +328,27 @@ export default function UsersHandler() {
                             />
                         </Grid>
                         <Grid item xs={6}>
-                            <TextField
-                                autoFocus
-                                margin="dense"
-                                id="password"
-                                label="Password"
-                                type="password"
-                                fullWidth
-                                variant="standard"
-                                onChange={(e) => setNewData({ ...newData, password: e.target.value })}
-                            />
+                            <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
+                                <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+                                <Input
+                                    id="standard-adornment-password"
+                                    type={showPassword ? 'text' : 'password'}
+                                    value={newData.password}
+                                    onChange={handlePasswordChange}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                            >
+                                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                />
+                                {error.passwordError && <span style={{ fontWeight: '500', fontSize: "9px", color: 'red' }}>Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number.</span>}
+                            </FormControl>
                         </Grid>
                         <Grid item xs={12}>
                             <InputLabel htmlFor="role">User Role</InputLabel>

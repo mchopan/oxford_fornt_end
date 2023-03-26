@@ -123,18 +123,18 @@ const Index = () => {
                                 src="/"
                                 alt={user.firstName}
                             />
-                            <Typography variant="h6">
+                            <Typography color={'whitesmoke'} variant="h6">
                                 {user.firstName}
                             </Typography>
                         </Box>
                         <Tooltip title="Home">
                             <iconButton onClick={HandHomeButton}>
-                                <HomeIcon />
+                                <HomeIcon sx={{ color: "whitesmoke" }} />
                             </iconButton>
                         </Tooltip>
                         <Tooltip title="Logout">
                             <iconButton onClick={HandleLogout}>
-                                <LogoutIcon />
+                                <LogoutIcon sx={{ color: "whitesmoke" }} />
                             </iconButton>
                         </Tooltip>
                     </Box>
