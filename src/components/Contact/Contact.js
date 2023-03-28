@@ -17,7 +17,7 @@ const Contact = () => {
 
         emailjs.sendForm('service_86x9hym', 'template_6fd9iyl', form.current, 'fT8jnjGsVhq8LzRP1',)
             .then((result) => {
-                Toast({ type: 'success', message: `Message Send Successfully!` });
+                Toast({ type: 'success', message: `Thank you for contacting us!` });
             }, (error) => {
                 Toast({ type: 'error', message: `Error, Message Not Send` });
             });

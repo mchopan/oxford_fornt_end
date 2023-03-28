@@ -73,16 +73,6 @@ const NdeTabs = () => {
         })
     }
 
-    const handleMouseEnter = () => {
-        // Disable autoplay on hover
-        SwiperCore.use([Autoplay]).disable();
-    };
-
-    const handleMouseLeave = () => {
-        // Enable autoplay when mouse leaves
-        SwiperCore.use([Autoplay]).enable();
-    };
-
     //animation on changing the tab
     const boxAnimation = {
         initial: {
@@ -100,6 +90,12 @@ const NdeTabs = () => {
         e.preventDefault();
         console.log(id);
         navigate(`/Notifications`);
+    }
+
+    const navigateEvent = (e, id) => {
+        e.preventDefault();
+        console.log(id);
+        navigate(`/Events`);
     }
 
 
@@ -124,25 +120,16 @@ const NdeTabs = () => {
                                 :
                                 <Box sx={{ maxHeight: '570px', }}>
                                     {
-                                        notifications.length > 0 ? (
+                                        notifications?.length > 0 ? (
                                             <>
                                                 <Swiper
                                                     direction={"vertical"}
-                                                    slidesPerView={7}
-                                                    loop={true}
+                                                    slidesPerView={notifications && notifications.length <= 7 ? notifications.length : 7}
                                                     allowTouchMove={false}
-                                                    autoplay={{
-                                                        delay: 1000,
-                                                        disableOnInteraction: true // Disable autoplay on interaction
-                                                    }}
-                                                    modules={[Autoplay]}
                                                     style={{ maxHeight: '570px' }}
-                                                    onMouseEnter={handleMouseEnter} // Call handleMouseEnter on mouse enter
-                                                    onMouseLeave={handleMouseLeave} // Call handleMouseLeave on mouse leave
                                                 >
-
                                                     {
-                                                        notifications?.slice(0, 10).map((item, index) => {
+                                                        notifications?.slice(0, 7).map((item, index) => {
                                                             return (
                                                                 <SwiperSlide>
                                                                     <motion.div
@@ -218,25 +205,17 @@ const NdeTabs = () => {
                                 :
                                 <Box sx={{ maxHeight: '570px', }}>
                                     {
-                                        downloads.length > 0 ? (
+                                        downloads?.length > 0 ? (
                                             <>
                                                 <Swiper
                                                     direction={"vertical"}
-                                                    slidesPerView={7}
-                                                    loop={true}
+                                                    slidesPerView={downloads && downloads.length <= 7 ? downloads.length : 7}
                                                     allowTouchMove={false}
-                                                    autoplay={{
-                                                        delay: 1000,
-                                                        disableOnInteraction: true // Disable autoplay on interaction
-                                                    }}
-                                                    modules={[Autoplay]}
                                                     style={{ maxHeight: '570px' }}
-                                                    onMouseEnter={handleMouseEnter} // Call handleMouseEnter on mouse enter
-                                                    onMouseLeave={handleMouseLeave} // Call handleMouseLeave on mouse leave
                                                 >
 
                                                     {
-                                                        notifications?.slice(0, 10).map((item, index) => {
+                                                        downloads?.slice(0, 7).map((item, index) => {
                                                             return (
                                                                 <SwiperSlide>
                                                                     <motion.div
@@ -311,26 +290,17 @@ const NdeTabs = () => {
                                 :
                                 <Box sx={{ maxHeight: '570px', }}>
                                     {
-                                        notifications.length > 0 ? (
+                                        events?.length > 0 ? (
                                             <>
                                                 <Swiper
-
                                                     direction={"vertical"}
-                                                    slidesPerView={6}
-                                                    loop={true}
+                                                    slidesPerView={events && events.length <= 7 ? events.length : 7}
                                                     allowTouchMove={false}
-                                                    autoplay={{
-                                                        delay: 1000,
-                                                        disableOnInteraction: true // Disable autoplay on interaction
-                                                    }}
-                                                    modules={[Autoplay]}
                                                     style={{ maxHeight: '570px' }}
-                                                    onMouseEnter={handleMouseEnter} // Call handleMouseEnter on mouse enter
-                                                    onMouseLeave={handleMouseLeave} // Call handleMouseLeave on mouse leave
                                                 >
 
                                                     {
-                                                        events?.slice(0, 10).map((item, index) => {
+                                                        events?.slice(0, 7).map((item, index) => {
                                                             return (
                                                                 <SwiperSlide>
                                                                     <motion.div
@@ -341,7 +311,7 @@ const NdeTabs = () => {
                                                                         animate="animate"
                                                                     >
                                                                         <List
-                                                                            onClick={(e) => { navigateNotify(e, item._id) }}
+                                                                            onClick={(e) => { navigateEvent(e, item._id) }}
                                                                             key={item._id}
                                                                             sx={{
                                                                                 color: 'red',
@@ -396,8 +366,6 @@ const NdeTabs = () => {
                                                                                     year: 'numeric',
                                                                                 })}
                                                                             </Typography>
-
-
                                                                         </List>
                                                                     </motion.div>
                                                                 </SwiperSlide>
