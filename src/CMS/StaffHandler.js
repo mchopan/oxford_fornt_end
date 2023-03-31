@@ -245,7 +245,7 @@ export default function StaffHandler() {
                         autoFocus
                         margin="dense"
                         id="expert"
-                        label="Profician"
+                        label="Education"
                         type="text"
                         fullWidth
                         variant="standard"
