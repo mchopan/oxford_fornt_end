@@ -16,6 +16,7 @@ import Toast from '../components/Toast/Toast';
 import LogoutIcon from '@mui/icons-material/Logout';
 import HomeIcon from '@mui/icons-material/Home';
 import Files from './Files';
+import StaffHandler from './StaffHandler';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -152,7 +153,8 @@ const Index = () => {
                         <Tab label="Downloads" {...a11yProps(3)} />
                         <Tab label="Testemonials" {...a11yProps(4)} />
                         <Tab label="Users" {...a11yProps(5)} />
-                        <Tab label="Images" {...a11yProps(6)} />
+                        <Tab label="Gallery" {...a11yProps(6)} />
+                        <Tab label="Staff" {...a11yProps(7)} />
                     </Tabs>
                 </Box>
                 <Box className="container">
@@ -176,6 +178,9 @@ const Index = () => {
                     </TabPanel>
                     <TabPanel className="table-panel" value={value} index={6}>
                         <Files />
+                    </TabPanel>
+                    <TabPanel className="table-panel" value={value} index={7}>
+                        <StaffHandler />
                     </TabPanel>
                 </Box>
             </Box>

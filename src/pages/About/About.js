@@ -3,6 +3,7 @@ import React from 'react'
 import Typography from '@mui/material/Typography'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { motion } from 'framer-motion'
+import Staff from '../../components/Staff/Staff'
 
 
 const About = () => {
@@ -79,6 +80,9 @@ const About = () => {
             <Typography sx={{ borderBottom: '2px solid black' }} variant="h5" textAlign="center" color="white" backgroundColor="gray">
                 About Us
             </Typography>
+            <Box sx={{ margin: '10px', padding: '10px' }}>
+                <Staff />
+            </Box>
             <Box sx={{ margin: { xs: '0px 20px', md: '0px 50px' } }}>
                 <Box sx={{ padding: '5px' }}>
                     <Typography variant="h6" color="#0077c2" textAlign='center' >
