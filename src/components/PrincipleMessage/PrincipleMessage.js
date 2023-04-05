@@ -25,7 +25,7 @@ const PrincipleMessage = () => {
                         variant="rounded"
                         sx={avatar}
                         alt='Vinod'
-                        src='http://www.casetcollege.in/images/principal_photo.jpg'
+                        src='https://casetcollege.in/wp-content/uploads/2023/04/principle2.jpg'
                     />
                     <Typography variant="caption" color="initial">
                         Prof. Vinod Vishen

@@ -6,9 +6,10 @@ import './styles.css'
 const Welcome = () => {
 
     const handleTextBox = {
-        color: ' #ff0000',
         cursor: 'pointer',
-        position: 'relative'
+        position: 'relative',
+        backgroundColor: "#008df3",
+        color: "white"
     }
 
     const welcomeStyle = {
@@ -18,8 +19,6 @@ const Welcome = () => {
         padding: '10px',
         borderRadius: '10px',
         textAlign: 'center',
-        color: 'black',
-        fontWeight: 'bold',
     }
 
 
@@ -42,7 +41,7 @@ const Welcome = () => {
                         repeatDelay: 1
                     }}
                 /> */}
-                <Typography veriant='h6' textAlign=' center' sx={welcomeStyle} >
+                <Typography veriant='h6' textAlign='center' sx={welcomeStyle} >
                     Once again, welcome to Caset College Of Computer Science. We are excited to have you as a part of our family, and look forward to helping you achieve your full potential as a student and a global citizen!"
                 </Typography>
             </div >

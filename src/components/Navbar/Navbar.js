@@ -78,6 +78,10 @@ const Navbar = () => {
         setOpen(false);
     }
 
+    const handleClick = () => {
+        navigate('/Home')
+    }
+
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -92,12 +96,12 @@ const Navbar = () => {
                     {
                         isMatch ? (
                             <>
-                                <img src={logo1} alt="logo" width='360px' />
+                                <img onClick={handleClick} src={logo1} alt="logo" width='360px' />
                             </>
                         ) : (
                             <>
                                 <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: '100%', margin: 'auto' }}>
-                                    <img sx={{ marginLeft: "auto" }} src={logo1} alt="logo" width='500px' />
+                                    <img onClick={handleClick} sx={{ marginLeft: "auto" }} src={logo1} alt="logo" width='500px' />
                                 </Box>
                                 <Tabs sx={{ marginLeft: "auto", display: 'flex', alignItems: 'center' }} value={value}
                                     textColor='inherit'

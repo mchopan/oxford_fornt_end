@@ -41,9 +41,11 @@ const Testimonial = () => {
 
     const styles = {
         width: '98vw',
-        height: '98vh',
+        height: '100%',
         margin: 'auto',
         padding: '10px',
+        borderRadius: '10px',
+
     }
 
 
@@ -55,7 +57,8 @@ const Testimonial = () => {
             <Grid container spacing={0}
                 sx={{
                     overflow: 'hidden',
-                    paddingTop: '0px'
+                    paddingTop: '0px',
+                    backgroundColor: "wheat",
                 }}
             >
                 {
@@ -87,17 +90,16 @@ const Testimonial = () => {
                             }}
                             modules={[Pagination, Autoplay, EffectCreative]}
                             className="mySwiper"
-                            style={{ padding: '0px', height: '85vh' }}
+                            style={{ padding: '0px', height: '100%' }}
                         >
                             {
                                 testemData.map((data, index) => (
-                                    <SwiperSlide style={{ backgroundColor: 'white' }}>
+                                    <SwiperSlide style={{ backgroundColor: '#e9eade' }}>
                                         <Grid xs={12} item
                                             sx={{
                                                 // backgroundColor: 'rgba(225,225,225,)',
                                                 padding: '10px',
                                                 margin: '20px 20px',
-                                                height: 'calc(98vh - 150px)'
                                             }}>
 
                                             <Typography color={'black'} variant="h3" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start' }}>

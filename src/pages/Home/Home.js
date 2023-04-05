@@ -4,9 +4,9 @@ import Contact from "../../components/Contact/Contact";
 import Gallery from "../../components/Gallery/Gallery";
 import Hero from "../../components/Hero/Hero";
 import Notifications from "../../components/Notifications/Notifications";
-import PrincipleMessage from "../../components/PrincipleMessage/PrincipleMessage";
 import Testimonial from "../../components/Testimonial/Testimonial";
 import { motion } from 'framer-motion'
+import PrincipleMessageSm from "../../components/PrincipleMessage/PrincipleMessageSmallSc";
 
 
 function Home() {
@@ -48,11 +48,11 @@ function Home() {
         >
             <Hero />
             <Notifications />
+            <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+                <PrincipleMessageSm />
+            </Box>
             <Gallery />
             <Testimonial />
-            <Box sx={{ display: { xs: 'block', md: 'none' } }}>
-                <PrincipleMessage />
-            </Box>
             <About />
             <Contact />
         </motion.Box>

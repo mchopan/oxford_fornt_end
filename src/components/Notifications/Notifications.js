@@ -40,7 +40,7 @@ const Notifications = () => {
         <Box sx={mainContainer}>
             <Box item sx={handleMessages}>
                 <Welcome />
-                <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                <Box sx={{ display: { xs: 'none', md: 'block', backgroundColor: "#ede5e5" } }}>
                     <PrincipleMessage />
                 </Box>
             </Box>
