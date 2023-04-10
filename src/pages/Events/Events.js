@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import './styles.css'
 
 import EventsApi from '../../modules/Events/index'
+import { Helmet } from 'react-helmet-async'
 
 
 const Events = () => {
@@ -119,6 +120,11 @@ const Events = () => {
             animate="center"
             exit="exit"
         >
+            <Helmet>
+                <title>Events</title>
+                <meta name="description" content="Events Of Caset College of Computer Science" />
+                <link rel="canonical" href="/Events" />
+            </Helmet>
             <Typography sx={{ borderBottom: '2px solid black' }} variant="h5" textAlign="center" color="white" backgroundColor="gray">
                 Events
             </Typography>

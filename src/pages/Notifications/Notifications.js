@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import Notification from '../../modules/Notification';
 import Loader from '../../assets/Loader/loader'
 import NoResult from '../../assets/Illustrations/Empty Box.svg'
+import { Helmet } from 'react-helmet-async';
 
 const transition = {
     duration: 0.3,
@@ -84,6 +85,11 @@ export default function Notifications() {
                 exit="exit"
 
             >
+                <Helmet>
+                    <title>Notifications</title>
+                    <meta name="description" content="Notifications of Caset College of Computer Science" />
+                    <link rel="canonical" href="/Notifications" />
+                </Helmet>
                 <Typography sx={{ borderBottom: '2px solid black' }} variant="h5" textAlign="center" color="white" backgroundColor="gray">
                     Notifications
                 </Typography>

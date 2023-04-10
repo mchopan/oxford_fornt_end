@@ -7,6 +7,7 @@ import Notifications from "../../components/Notifications/Notifications";
 import Testimonial from "../../components/Testimonial/Testimonial";
 import { motion } from 'framer-motion'
 import PrincipleMessageSm from "../../components/PrincipleMessage/PrincipleMessageSmallSc";
+import { Helmet } from "react-helmet-async";
 
 
 function Home() {
@@ -46,6 +47,11 @@ function Home() {
             animate="center"
             exit="exit"
         >
+            <Helmet>
+                <title>Home</title>
+                <meta name="description" content="Caset College of Computer Science" />
+                <link rel="canonical" href="/Home" />
+            </Helmet>
             <Hero />
             <Notifications />
             <Box sx={{ display: { xs: 'block', md: 'none' } }}>

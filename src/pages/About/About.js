@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { motion } from 'framer-motion'
 import Staff from '../../components/Staff/Staff'
+import { Helmet } from 'react-helmet-async'
 
 
 const About = () => {
@@ -77,6 +78,11 @@ const About = () => {
             exit="exit"
 
         >
+            <Helmet>
+                <title>About</title>
+                <meta name="description" content=" About Caset College of Computer Science" />
+                <link rel="canonical" href="/About" />
+            </Helmet>
             <Typography sx={{ borderBottom: '2px solid black' }} variant="h5" textAlign="center" color="white" backgroundColor="gray">
                 About Us
             </Typography>

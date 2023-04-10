@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Button, Card, CardActions, CardContent, Typography, CardHeader } from '@mui/material';
 import { Box } from '@mui/system';
+import { Helmet } from 'react-helmet-async';
 
 export const Downloads = () => {
     const transition = {
@@ -47,6 +48,11 @@ export const Downloads = () => {
             animate="center"
             exit="exit"
         >
+            <Helmet>
+                <title>Downloads</title>
+                <meta name="description" content="Downloads Of Caset College of Computer Science" />
+                <link rel="canonical" href="/Downloads" />
+            </Helmet>
             <Typography sx={{ borderBottom: '2px solid black' }} variant="h5" textAlign="center" color="white" backgroundColor="gray">
                 Downloads
             </Typography>
