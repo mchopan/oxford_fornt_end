@@ -1,7 +1,24 @@
-https://mchopan-college.vercel.app/
-https://mchopan-college.vercel.app/Home
-https://mchopan-college.vercel.app/Notifications
-https://mchopan-college.vercel.app/Downloads
-https://mchopan-college.vercel.app/Events
-https://mchopan-college.vercel.app/Gallery
-https://mchopan-college.vercel.app/About
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <url>
+      <loc>https://mchopan-college.vercel.app/</loc>
+   </url>
+   <url>
+      <loc>https://mchopan-college.vercel.app/Home</loc>
+   </url>
+   <url>
+      <loc>https://mchopan-college.vercel.app/Notifications</loc>
+   </url>
+   <url>
+      <loc>https://mchopan-college.vercel.app/Downloads</loc>
+   </url>
+   <url>
+      <loc>https://mchopan-college.vercel.app/Events</loc>
+   </url>
+   <url>
+      <loc>https://mchopan-college.vercel.app/Gallery</loc>
+   </url>
+   <url>
+      <loc>https://mchopan-college.vercel.app/About</loc>
+   </url>
+</urlset>
